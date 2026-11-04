@@ -3,6 +3,7 @@ import { GameContext, type GameContextValue } from "@/lib/game-context";
 import { gameReducer, hydrateState } from "@/lib/gameEngine";
 import { loadSaved, saveState, storageMode } from "@/lib/storage";
 import { playSfx, type SfxKind } from "@/lib/sfx";
+import { useMenuMusic } from "@/hooks/useMenuMusic";
 
 export function GameProvider({ children }: { children: ReactNode }): ReactElement {
   const [state, dispatch] = useReducer(gameReducer, undefined, () => hydrateState(loadSaved()));
@@ -10,6 +11,8 @@ export function GameProvider({ children }: { children: ReactNode }): ReactElemen
   useEffect(() => {
     saveState(state);
   }, [state]);
+
+  useMenuMusic(state.phase, state.muted);
 
   const sfx = useCallback(
     (kind: SfxKind) => {

@@ -32,6 +32,11 @@ Characters: **Shivam** (hero/candidate), **Recruiter Papa** (skeptical father), 
 - Finale (phase "finale", `components/game/finale/FinaleScreen.tsx`): OPEN_FINALE only when the journey has 3 spotlights viewed. Steps: Papa setup line → Miss Growth entry → JSON question + 3 audience cards (Content Creators / Students / Startup Founders) → detail (hypothesis, controlled pilot, measure, risk + "untested hypothesis" caveat) → Lock in (CHOOSE_FINALE) → ending: Papa + Miss Growth ending lines, confetti, "RISHTA SHORTLISTED!", tagline, fictional disclaimer, Replay as the Other Character, Try another audience, Learning Journal. Personal link buttons render only for real URLs (currently none).
 - Entry points to finale: hub finale card "Meet Miss Growth", arena nav button, spotlight dialog button (once 3 seals).
 
+## Menu music (built)
+- `frontend/public/audio/menu-loop.mp3` (user-supplied) loops gaplessly via Web Audio (`lib/menuMusic.ts`) at 25% gain, only on the `title` and `select` phases (`hooks/useMenuMusic.ts`, mounted in GameProvider).
+- Starts only after the player's first pointer/key interaction; follows the existing `muted` flag (default muted, toggle `hud-audio-toggle`); 0.8s fade-out on entering any other phase (intro cinematic, journeys, finale); resumes from the same spot when the player is back on a menu screen.
+- Load/decode failure → `console.warn`, silent game. Status exposed as `<html data-menu-music="on|off|unavailable">` for tests.
+
 ## Journey-specific spotlight framing (built)
 - Same feature, same data, same seal/progression mechanics; copy lives in `SPOTLIGHT_COPY` (lib/script.ts), passed as `copy` to the shared `SpotlightPanel` (ArenaParts) and `SpotlightDialog` (father/SpotlightDialog.tsx, used by both journeys).
 - Father: "Papa's Proof Inspection" · headline "Claims are easy. Where's the proof?" · button "Inspect Shivam's Evidence" · dialog = Challenge (arena `hero_problem`) + Evidence cards (Action / Measurable result).
