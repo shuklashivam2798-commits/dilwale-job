@@ -1,0 +1,350 @@
+{
+  "theme": "dark",
+  "project_title": "Dilwale Job Le Jayenge - Bollywood Recruitment RPG",
+  "archetype": "Retro 16-Bit Bollywood Romantic-Action Comedy RPG",
+  "typography": {
+    "font_family_heading": "Space Grotesk, sans-serif",
+    "font_family_body": "Outfit, sans-serif",
+    "font_family_mono": "IBM Plex Mono, monospace",
+    "scale_px": {
+      "display": 60,
+      "h1": 48,
+      "h2": 36,
+      "h3": 24,
+      "body": 16,
+      "caption": 14
+    },
+    "font_import": "@import \"@fontsource-variable/space-grotesk\";\n@import \"@fontsource-variable/outfit\";\n@import \"@fontsource/ibm-plex-mono\";",
+    "rules": {
+      "headings": "font-heading font-black tracking-tight uppercase",
+      "dialogue": "font-body text-base leading-relaxed tracking-normal font-medium",
+      "rpg_labels": "font-mono text-xs uppercase tracking-widest font-semibold",
+      "cinematic_subtitles": "font-heading text-lg sm:text-xl font-bold tracking-wide"
+    }
+  },
+  "colors": {
+    "accent": "#F59E0B",
+    "on_accent": "#0D0714",
+    "surfaces": [
+      {
+        "name": "page",
+        "kind": "solid",
+        "bg": "#0D0714",
+        "on_bg": "#F5F3FF",
+        "on_bg_muted": "#C4B5FD",
+        "roles": {
+          "link": "#FBBF24",
+          "error": "#F87171",
+          "success": "#34D399",
+          "warning": "#FBBF24",
+          "accent_gold": "#F59E0B",
+          "accent_magenta": "#EC4899",
+          "accent_purple": "#8B5CF6",
+          "accent_cyan": "#06B6D4"
+        }
+      },
+      {
+        "name": "rpg_panel",
+        "kind": "solid",
+        "bg": "#1A102F",
+        "on_bg": "#FFFFFF",
+        "on_bg_muted": "#DDD6FE",
+        "roles": {
+          "border": "#7C3AED",
+          "gold_trim": "#F59E0B",
+          "highlight": "#D946EF"
+        }
+      },
+      {
+        "name": "dialogue_box",
+        "kind": "solid",
+        "bg": "#160C26",
+        "on_bg": "#FFFFFF",
+        "on_bg_muted": "#DDD6FE",
+        "roles": {
+          "speaker_name": "#FDE047",
+          "prompt_blink": "#EC4899",
+          "key_quote": "#F59E0B"
+        }
+      },
+      {
+        "name": "card_father",
+        "kind": "solid",
+        "bg": "#220D1A",
+        "on_bg": "#FFFFFF",
+        "on_bg_muted": "#FECDD3",
+        "roles": {
+          "border": "#BE185D",
+          "accent": "#F43F5E",
+          "badge": "#9F1239"
+        }
+      },
+      {
+        "name": "card_shivam",
+        "kind": "solid",
+        "bg": "#0E1A38",
+        "on_bg": "#FFFFFF",
+        "on_bg_muted": "#BAE6FD",
+        "roles": {
+          "border": "#2563EB",
+          "accent": "#38BDF8",
+          "badge": "#1E40AF"
+        }
+      },
+      {
+        "name": "vault_drawer",
+        "kind": "solid",
+        "bg": "#120B24",
+        "on_bg": "#FFFFFF",
+        "on_bg_muted": "#C4B5FD",
+        "roles": {
+          "card_bg": "#1E1338",
+          "badge_achieved": "#059669",
+          "badge_research": "#2563EB",
+          "badge_plan": "#D97706",
+          "badge_mvp": "#7C3AED",
+          "badge_project": "#DB2777"
+        }
+      },
+      {
+        "name": "arena_locked",
+        "kind": "solid",
+        "bg": "#150F28",
+        "on_bg": "#FFFFFF",
+        "on_bg_muted": "#9CA3AF",
+        "roles": {
+          "lock_border": "#4B5563",
+          "lock_glow": "#F59E0B"
+        }
+      }
+    ]
+  },
+  "entry_surfaces": {
+    "/": "Retro Bollywood RPG Title Screen with neon gold-magenta marquee, 16-bit CSS stage, opening cinematic sequence, journey selection portal, HUD status bar, and resume power vault drawer"
+  },
+  "character_svg_guidelines": {
+    "format": "Hand-crafted inline SVG sprites with 16-bit retro pixel and isometric charm, rich color shading, expressive Bollywood posture, and CSS micro-animations",
+    "shivam": {
+      "archetype": "Passionate Hero / Growth Hacker with Bollywood swagger",
+      "visual_traits": [
+        "Dynamic wind-blown stylish hero hair (dark chocolate/black with purple sheen)",
+        "Leather jacket with rolled sleeves over clean white tee / Wispr badge",
+        "Golden glasses / determined sparkling eyes",
+        "Holding a glowing holographic growth strategy card / tablet in hand",
+        "Pose: Confident action hero stance, left arm outstretched towards dream, smirk"
+      ],
+      "svg_colors": {
+        "skin": "#F3C6A5",
+        "skin_shadow": "#DDA784",
+        "hair": "#1E1B2E",
+        "jacket": "#3B82F6",
+        "jacket_shadow": "#1D4ED8",
+        "accent": "#F59E0B"
+      }
+    },
+    "papa": {
+      "archetype": "Skeptical, dramatic Indian Father / Senior HR Recruiter",
+      "visual_traits": [
+        "Distinguished grey-streaked mustache and stern eyebrows",
+        "Formal traditional Nehru jacket / bandhgala in royal crimson-magenta",
+        "Thick reading glasses perched on nose, holding a stack of 2000 rejected paper resumes that swirl around him",
+        "Pose: Dramatic Amrish Puri / Bollywood patriarch index finger pointed, skeptical frown yet secretly intrigued"
+      ],
+      "svg_colors": {
+        "skin": "#E8B298",
+        "skin_shadow": "#CD8E70",
+        "jacket": "#9D174D",
+        "jacket_trim": "#FBBF24",
+        "hair_grey": "#6B7280",
+        "glasses": "#D1D5DB"
+      }
+    },
+    "miss_growth": {
+      "archetype": "The Dream Role Personified (Growth Lead at Wispr Flow)",
+      "visual_traits": [
+        "Golden glowing aura / starlight particles around her silhouette",
+        "Elegant modern Bollywood attire with flowing dupatta made of neon metric charts and growth vectors",
+        "Holding a glowing crystal orb displaying hockey-stick MRR curve and 10x multiplier",
+        "Pose: Graceful, aspirational Bollywood heroine turn, inviting the worthy candidate to step forward"
+      ],
+      "svg_colors": {
+        "aura": "#F59E0B",
+        "dress": "#EC4899",
+        "dress_secondary": "#8B5CF6",
+        "chart_vector": "#34D399"
+      }
+    }
+  },
+  "opening_cinematic_spec": {
+    "timing": "18 to 22 seconds total (auto-advancing with typewriter effect, or manual Next click / spacebar, or instant 'Skip Intro' button)",
+    "beats": [
+      {
+        "beat": 1,
+        "speaker": "Recruiter Papa",
+        "speaker_color": "#F43F5E",
+        "hindi_dialogue": "Ek dream job. Do hazaar applications. Aur ek recruiter… jo resumes dekh dekh kar thak chuka tha!",
+        "english_sub": "One dream job. 2,000 applications. And one recruiter... exhausted by generic PDFs!",
+        "visual_state": "Papa standing amid flying swirling white sheets with red rejection stamps; dark thunderous purple backdrop."
+      },
+      {
+        "beat": 2,
+        "speaker": "Shivam (The Hero)",
+        "speaker_color": "#38BDF8",
+        "hindi_dialogue": "Par ek ladka tha… jise PDF bhejna manzoor nahi tha!",
+        "english_sub": "But there was one challenger... who refused to be just another resume in the pile!",
+        "visual_state": "Shivam leaps into the spotlight with glowing strategy cards, cutting through flying CVs; golden spotlight."
+      },
+      {
+        "beat": 3,
+        "speaker": "Recruiter Papa",
+        "speaker_color": "#F43F5E",
+        "hindi_dialogue": "THEHRO! Meri beti ke liye hazaaron rishte aaye hain. Tum mein aisa kya khaas hai?",
+        "english_sub": "STOP! Thousands have sought this coveted role. What makes YOU worthy of Miss Growth?",
+        "visual_state": "Papa points dramatically with lightning strike effect; split screen stare-down (Papa vs Shivam)."
+      },
+      {
+        "beat": 4,
+        "speaker": "Shivam",
+        "speaker_color": "#FBBF24",
+        "hindi_dialogue": "Uncle ji, resume nahi… live demo aur growth engine lekar aaya hoon!",
+        "english_sub": "Sir, I didn't bring a resume... I brought proof of execution and real growth tactics!",
+        "visual_state": "Miss Growth shines in the background; Shivam readies his deck; freeze frame transition into Journey Choice."
+      }
+    ]
+  },
+  "journey_selection_cards": [
+    {
+      "id": "father_journey",
+      "title": "Father's Journey: The Recruiter's Gauntlet",
+      "tagline": "Test the boy. Grill his ROI, metrics & problem-solving.",
+      "character": "Recruiter Papa",
+      "style": "Question Attacks & Skeptical Evaluation",
+      "color_theme": "Rose / Crimson / Gold",
+      "badge": "SKEPTIC MODE",
+      "action_cta": "Become Recruiter Papa — Test the Boy",
+      "description": "Step into Papa's shoes. Throw harsh growth challenges at Shivam and evaluate if his answers have real substance or startup fluff."
+    },
+    {
+      "id": "shivam_journey",
+      "title": "Shivam's Journey: Fight for the Dream Role",
+      "tagline": "Defend your strategies, play growth cards & win Miss Growth's hand.",
+      "character": "Shivam",
+      "style": "Turn-Based Strategy & Execution Combos",
+      "color_theme": "Royal Blue / Purple / Gold",
+      "badge": "CHALLENGER MODE",
+      "action_cta": "Become Shivam — Fight for the Role",
+      "description": "Play as Shivam. Deploy live growth experiments, user acquisition loops, and product insights across 3 intense Bollywood arenas."
+    }
+  ],
+  "hud_spec": {
+    "elements": [
+      {
+        "name": "Health Hearts",
+        "test_id": "hud-health-hearts",
+        "detail": "3 retro pixelated ruby hearts (❤️❤️❤️) with floating pulse animation"
+      },
+      {
+        "name": "Audio Toggle",
+        "test_id": "hud-audio-toggle",
+        "detail": "Mute/Unmute 8-bit sound effects & Bollywood synth chiptune audio generator (Web Audio API synth tones, no copyrighted music, default muted)"
+      },
+      {
+        "name": "Learning Journal",
+        "test_id": "hud-learning-journal-button",
+        "detail": "Quick drawer trigger previewing key campaign takeaways & self-reflection logs"
+      },
+      {
+        "name": "Resume Power Vault",
+        "test_id": "hud-resume-vault-button",
+        "detail": "Interactive slide-over drawer housing 21 verified CV achievement cards categorized by verified badges"
+      }
+    ]
+  },
+  "resume_power_vault_spec": {
+    "categories": [
+      { "id": "achieved", "label": "Achieved", "color": "bg-emerald-950 text-emerald-300 border-emerald-500" },
+      { "id": "research", "label": "Research & Strategy", "color": "bg-blue-950 text-blue-300 border-blue-500" },
+      { "id": "plan", "label": "Plan & Future Target", "color": "bg-amber-950 text-amber-300 border-amber-500" },
+      { "id": "mvp", "label": "Shipped MVP", "color": "bg-purple-950 text-purple-300 border-purple-500" },
+      { "id": "project", "label": "Project Built & Tested", "color": "bg-pink-950 text-pink-300 border-pink-500" }
+    ],
+    "sample_cards_count": 21,
+    "key_cards": [
+      {
+        "id": "card-1",
+        "title": "Wispr Flow India Acquisition Engine",
+        "category": "research",
+        "metric": "+240% Target MAU",
+        "source": "Wispr India GTM Teardown 2025",
+        "desc": "Built full viral loop mechanics leveraging voice-to-text WhatsApp power users and bilingual tech workers in Bengaluru & Mumbai."
+      },
+      {
+        "id": "card-2",
+        "title": "B2B SaaS Growth Pipeline 0-1",
+        "category": "achieved",
+        "metric": "$180k ARR Pipeline",
+        "source": "Product & Growth Lead Track Record",
+        "desc": "Designed outbound automated ICP sequences and high-converting interactive onboarding flows."
+      },
+      {
+        "id": "card-3",
+        "title": "Dilwale Job Le Jayenge Interactive App",
+        "category": "mvp",
+        "metric": "100% Custom Code & Design",
+        "source": "Wispr Growth Team Application",
+        "desc": "Zero templates, bespoke Bollywood 16-bit RPG crafted specifically to prove creative growth chops."
+      }
+    ]
+  },
+  "locked_arenas_preview": [
+    {
+      "arena_id": 1,
+      "title": "Arena 1: The Growth Gauntlet",
+      "boss": "Budget Beast",
+      "obstacle": "Zero Paid Ad Budget Challenge",
+      "status": "LOCKED - Unlocks in next step",
+      "theme": "Gold & Purple Desert of Rejections"
+    },
+    {
+      "arena_id": 2,
+      "title": "Arena 2: The Insight Illusion",
+      "boss": "The Invisible Audience",
+      "obstacle": "Distribution & Retention Mirage",
+      "status": "LOCKED - Unlocks in next step",
+      "theme": "Neon Magenta Palace of Metrics"
+    },
+    {
+      "arena_id": 3,
+      "title": "Arena 3: The Ownership Arena",
+      "boss": "The AI Fog King",
+      "obstacle": "Execution vs Fluff Showdown",
+      "status": "LOCKED - Unlocks in next step",
+      "theme": "Cosmic Royal Blue Wispr Citadel"
+    }
+  ],
+  "motion_and_interactions": {
+    "engine": "motion/react",
+    "animations": {
+      "typewriter": "Staggered letter rendering at 25ms per character with skip-on-click",
+      "card_hover": "scale: 1.03, y: -6px, glow shadow with 0.25s ease-out",
+      "bollywood_strobe": "Dramatic flash overlay on Papa's 'THEHRO!' interruption",
+      "hearts_pulse": "Continuous subtle heartbeat scale [1, 1.15, 1] over 1.4s",
+      "flying_resumes": "CSS particle animation with floating PDFs and golden sparkles"
+    }
+  },
+  "accessibility": {
+    "keyboard_nav": "Full arrow key navigation and Enter / Space selection on journey cards, dialogue advance with Spacebar or Enter, Escape to close drawers",
+    "contrast_guarantee": "All text strictly exceeds APCA / WCAG AA 4.5:1 ratio using deep purple/obsidian backgrounds with bright gold, white, and neon text",
+    "reduced_motion": "All motion transitions wrapped with prefers-reduced-motion checks disabling high velocity transforms",
+    "test_ids": "All buttons, journey cards, modal triggers, dialogue boxes, and navigation tabs have unique data-testid attributes"
+  },
+  "instructions_to_main_agent": [
+    "1. Replace default fonts in /app/frontend/src/index.css with @fontsource-variable/space-grotesk for headings and @fontsource-variable/outfit for body text, @fontsource/ibm-plex-mono for stats.",
+    "2. Render the app with high Bollywood flair: bold typography, retro 16-bit RPG gold borders, pixel badges, glowing dialogue boxes, and interactive audio feedback (synthesized Web Audio tones).",
+    "3. Implement the 3 inline SVG character sprites (Shivam, Recruiter Papa, Miss Growth) using the provided color palettes and expressive poses — do NOT use generic stock photos or unbranded placeholders.",
+    "4. Build the 4-beat opening cinematic with typewriter effect, auto-progress timer, 'Next Beat', 'Replay', and 'Skip Intro' buttons.",
+    "5. Build the Journey Selection screen featuring the two primary cards: 'Father's Journey' and 'Shivam's Journey', linking to active gameplay placeholders and the 3 locked arena teasers.",
+    "6. Build the top HUD with 3 Heart indicators, Sound Toggle, Learning Journal popup, and the 21-card Resume Power Vault drawer with category filter pills.",
+    "7. Add test-id attributes to all interactive elements for robust test coverage."
+  ]
+}

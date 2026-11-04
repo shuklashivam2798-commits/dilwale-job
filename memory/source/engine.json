@@ -1,0 +1,563 @@
+{
+  "game_title": "Dilwale Job Le Jayenge",
+  "subtitle": "A Finite Challenge. An Infinite Learner.",
+  "game_version": "3.0 — latest CV accepted as factual source of truth",
+  "source_disclaimer": "Treat every completed achievement and metric stated in the latest CV as true. Use exact CV language and metrics. Preserve distinctions explicitly made in the CV: achieved results, a pipeline rather than booked revenue, a project rather than a corporate rollout, a model or target rather than a realized business outcome. Never fabricate additional achievements or claim knowledge of experience not listed.",
+  "characters": [
+    {
+      "id": "shivam",
+      "name": "Shivam",
+      "role": "Engineer-turned-marketer, candidate"
+    },
+    {
+      "id": "papa",
+      "name": "Recruiter Papa",
+      "role": "Skeptical but fair evaluator"
+    },
+    {
+      "id": "daughter",
+      "name": "Miss Growth",
+      "role": "Wispr Flow India growth opportunity and independent final decision-maker"
+    }
+  ],
+  "arenas": [
+    {
+      "id": "growth",
+      "number": 1,
+      "title": "The Growth Gauntlet",
+      "monster": "The Budget Beast",
+      "theme": "Conversion, creative tests and demand generation",
+      "core_proof": "TCS loan-offer conversion increased from 1.5% to 2.4% (+60% relative) through placement/copy A/B tests; TCS CRM 10% holdouts demonstrated ₹12 Cr incremental annual card spend; HABER action-led CTR 10.73% vs 7.01% across creative testing.",
+      "badge": "Experimentation Seal",
+      "hero_problem": "A fast-growing campaign has clicks, but the team must establish whether engagement and conversion are real.",
+      "hero_moves": [
+        {
+          "id": "grow_blind",
+          "title": "Budget Blast",
+          "decision": "Spend more before checking conversion quality",
+          "correct": false,
+          "reaction": "Budget Beast gets bigger. Spending does not substitute for experiment and funnel diagnosis.",
+          "learning": "Diagnose metric definition, qualified conversion and experiment validity first."
+        },
+        {
+          "id": "grow_measure",
+          "title": "Experiment Lens",
+          "decision": "Audit baseline, audience, creative tests and conversion funnel before reallocating spend",
+          "correct": true,
+          "reaction": "Critical hit! Shivam uses creative testing and conversion analysis to decide what to test next.",
+          "learning": "Distinguish CTR, CPC, conversion rate, CAC and actual revenue."
+        },
+        {
+          "id": "grow_clicks",
+          "title": "CTR Confetti",
+          "decision": "Declare success solely because CTR increased",
+          "correct": false,
+          "reaction": "The monster shrugs. CTR does not prove revenue or customer retention.",
+          "learning": "Connect creative performance to qualified outcomes."
+        }
+      ]
+    },
+    {
+      "id": "insight",
+      "number": 2,
+      "title": "The Insight Illusion",
+      "monster": "The Invisible Audience",
+      "theme": "Firsthand research and realistic market planning",
+      "core_proof": "TCS analyzed 50,000 under-30 customer records and 12 interviews to reposition savings accounts, increasing openings 45%; Parle fieldwork covered 29 stores and a four-lever GTM plan; HABER identified a 92.7% brand-led search discovery gap.",
+      "badge": "Insight Seal",
+      "hero_problem": "Surface metrics conceal what retailers or customers actually need.",
+      "hero_moves": [
+        {
+          "id": "ins_guess",
+          "title": "Assumption Arrow",
+          "decision": "Set a nationwide strategy using only gut feel",
+          "correct": false,
+          "reaction": "Monster dodges. Without observed user behavior, a strategy may solve the wrong problem.",
+          "learning": "Start with observed problem and a research sample."
+        },
+        {
+          "id": "ins_field",
+          "title": "Customer Radar",
+          "decision": "Observe real behavior, segment the data, and label proposals versus observed results",
+          "correct": true,
+          "reaction": "Critical hit! Field research reveals retailer choice is not the same as a stockout.",
+          "learning": "Validate who is making the decision and why."
+        },
+        {
+          "id": "ins_target",
+          "title": "Forecast Fireworks",
+          "decision": "Celebrate future KPI targets as if they have already been achieved",
+          "correct": false,
+          "reaction": "The monster points at the calendar. Targets are not realized results.",
+          "learning": "Separate baseline, forecast, test and measured outcome."
+        }
+      ]
+    },
+    {
+      "id": "ownership",
+      "number": 3,
+      "title": "The Ownership Arena",
+      "monster": "The AI Fog King",
+      "theme": "MVP execution, automation and guardrails",
+      "core_proof": "ThinkQuota MVP shipped in about four weeks; Target Cart Recovery AI Agent project reduced AI calls per decision 8→1 and met all tested workflow gates in nine scenarios; TCS SME lending module launch added ₹40 Cr pipeline over two quarters.",
+      "badge": "Ownership Seal",
+      "hero_problem": "The team needs a working product and testable evidence, not an endless slide deck.",
+      "hero_moves": [
+        {
+          "id": "own_plan",
+          "title": "Infinite Deck",
+          "decision": "Create another elaborate strategy deck without shipping anything",
+          "correct": false,
+          "reaction": "The AI Fog King summons an even bigger deck.",
+          "learning": "Define the smallest working product and measurable acceptance tests."
+        },
+        {
+          "id": "own_ship",
+          "title": "MVP Forge",
+          "decision": "Ship the minimal product, enforce safety gates and test the workflow",
+          "correct": true,
+          "reaction": "Critical hit! Shivam demonstrates ThinkQuota scope tradeoffs and rules-first AI workflow design.",
+          "learning": "Measure adoption and business impact after the functional build."
+        },
+        {
+          "id": "own_claim",
+          "title": "Revenue Illusion",
+          "decision": "Assume nine successful workflow tests prove incremental sales",
+          "correct": false,
+          "reaction": "The monster laughs. Lab tests do not establish production revenue.",
+          "learning": "Run a holdout and measure incremental outcomes when deployed."
+        }
+      ]
+    }
+  ],
+  "father_attacks": [
+    {
+      "id": "G1",
+      "arena": "growth",
+      "name": "The 60% Conversion Trap",
+      "difficulty": "Hard",
+      "question": "You improved in-app loan-offer conversion by 60%. Was that a 60-percentage-point jump? What did you actually change?",
+      "outcome": "proven",
+      "power": "A/B Experimentation: Conversion Strike",
+      "answer": "At TCS, I A/B tested placement and copy for pre-approved in-app loan offers. Conversion rose from 1.5% to 2.4%: a 0.9-percentage-point increase and a 60% relative lift. I changed how and where the offer appeared, then used conversion performance to judge the test.",
+      "evidence": "TCS: in-app loan offer conversion 1.5% → 2.4%, +60% relative, via placement and copy A/B testing.",
+      "limitation": "The 60% is a relative increase, not 60 percentage points. This result is specific to the tested loan offer, not every banking product.",
+      "learning": "For the next experiment, track qualified outcomes beyond the initial offer conversion.",
+      "papa": "Wah beta! Percent aur percentage point ka chakkar bhi clear hai. Counterattack successful!",
+      "source": "Latest CV — TCS loan-offer conversion bullet",
+      "supporting_material_suggestion": "Optional proof drawer: original test setup and metric breakdown"
+    },
+    {
+      "id": "G2",
+      "arena": "growth",
+      "name": "The ₹12 Crore Holdout Challenge",
+      "difficulty": "Very Hard",
+      "question": "Marketing teams always take credit for sales. How did you establish that CRM actually generated incremental card spending?",
+      "outcome": "proven",
+      "power": "Causal CRM Measurement: Holdout Shield",
+      "answer": "At TCS, I used 10% holdout groups to measure the incremental contribution of CRM. The analysis showed ₹12 crore in incremental annual card spend, and I retired four low-performing campaigns based on the evidence.",
+      "evidence": "TCS: 10% CRM holdout groups; ₹12 Cr incremental annual card spend; 4 low-performing campaigns retired.",
+      "limitation": "Incremental card spend is not the same metric as profit or bank revenue. The holdout was the basis for incrementality measurement.",
+      "learning": "Continue testing long-term lift and profitability before scaling further.",
+      "papa": "Control group bhi? Yeh toh asli marketing science ka jaadu hai!",
+      "source": "Latest CV — TCS CRM incremental spend bullet",
+      "supporting_material_suggestion": "Optional: show a relevant CV/project extract if available"
+    },
+    {
+      "id": "G3",
+      "arena": "growth",
+      "name": "The Influencer Empire Attack",
+      "difficulty": "Very Hard",
+      "question": "Show me a nationwide creator-growth channel you independently owned end to end for a consumer AI product.",
+      "outcome": "learning",
+      "power": null,
+      "answer": "That specific nationwide consumer-AI influencer ownership is not listed in my latest CV. I can bring transferable experience from marketing experiments, positioning, campaign measurement and user research. I would first test a smaller creator cohort rather than pretend to have run the same channel at national scale.",
+      "evidence": null,
+      "limitation": "No directly matching nationwide creator-growth program appears in the supplied CV. That is an absence of listed evidence, not a claim that such experience can never exist.",
+      "learning": "Shivam noted it down: shortlist 10 relevant creators, test voice-workflow demos, measure activated users, D7 retention and cost per retained user before scaling.",
+      "papa": "Ek heart gaya! Lekin beta ne sawal notebook mein likh liya.",
+      "source": "No direct corresponding bullet in latest CV",
+      "supporting_material_suggestion": "Optional: show a relevant CV/project extract if available"
+    },
+    {
+      "id": "I1",
+      "arena": "insight",
+      "name": "The 50,000-Customer Insight Attack",
+      "difficulty": "Hard",
+      "question": "You call yourself consumer-focused. Tell me about an insight that actually changed customer outcomes.",
+      "outcome": "proven",
+      "power": "Customer Research: Insight Vision",
+      "answer": "At TCS, I analyzed data on 50,000 customers under age 30 and conducted 12 interviews. Those insights informed the repositioning of Central Bank of India savings accounts, lifting account openings by 45%.",
+      "evidence": "TCS: data on 50K under-30 customers, 12 interviews, 45% increase in Central Bank of India savings account openings.",
+      "limitation": "The outcome refers to the savings account-opening initiative and should not be presented as growth across the bank’s entire customer base.",
+      "learning": "Keep connecting qualitative motivations with behavior and measured results.",
+      "papa": "Pehle logon ko samjha, phir positioning badli. Papa impressed!",
+      "source": "Latest CV — TCS Central Bank savings account bullet",
+      "supporting_material_suggestion": "Optional: show a relevant CV/project extract if available"
+    },
+    {
+      "id": "I2",
+      "arena": "insight",
+      "name": "The Retail Reality Check",
+      "difficulty": "Hard",
+      "question": "You can look at dashboards. But have you actually investigated what happens on the ground?",
+      "outcome": "proven",
+      "power": "Retail Field Research: Ground Reality Radar",
+      "answer": "In my Parle-G field-sales and GTM project, I audited 29 GT and MT outlets, assessed assortment and POSM, identified that 31% of the observed shelves lacked Parle-G and that two-thirds of those absences came from retailer choice rather than stockouts. I developed a four-lever GTM plan and also identified higher margins where outlets stocked five or more packs.",
+      "evidence": "Parle: 29 GT/MT outlets; 31% of shelves lacked Parle-G; about two-thirds due to retailer choice; 10.25% margin with 5+ packs vs 8.67% for single-pack outlets; four-lever GTM plan.",
+      "limitation": "The research covers 29 audited outlets; the four-lever plan is a proposed strategy, not a claimed nationwide realized sales result.",
+      "learning": "Validate the retailer-insight pattern in additional stores before broader rollout.",
+      "papa": "Bas Excel mein nahi, dukaan mein bhi research ki! Bahut badhiya.",
+      "source": "Latest CV — Parle bullets 1–3",
+      "supporting_material_suggestion": "Optional: show a relevant CV/project extract if available"
+    },
+    {
+      "id": "I3",
+      "arena": "insight",
+      "name": "The Wispr Customer JTBD Ambush",
+      "difficulty": "Very Hard",
+      "question": "Have you already conducted firsthand interviews with Indian Wispr Flow users to validate their core jobs-to-be-done?",
+      "outcome": "learning",
+      "power": null,
+      "answer": "My CV does not list completed firsthand interviews with Wispr Flow users. I would not present assumptions about their JTBD as validated insights. My experience with customer research and analytics gives me a method: interview users and non-users around triggering moments, alternatives and repeated behavior.",
+      "evidence": null,
+      "limitation": "The latest CV does not identify a completed Wispr Flow-specific user research study.",
+      "learning": "Shivam noted it down: interview trial users and non-users across multiple segments, map triggers and existing workarounds, then compare findings against activation and repeat usage.",
+      "papa": "Good. Customer se pooche bina unka answer assume nahi karna chahiye.",
+      "source": "No Wispr Flow user interview accomplishment listed in latest CV",
+      "supporting_material_suggestion": "Optional: show a relevant CV/project extract if available"
+    },
+    {
+      "id": "O1",
+      "arena": "ownership",
+      "name": "The Show-Me-What-You-Built Attack",
+      "difficulty": "Hard",
+      "question": "Enough strategy decks! What have you actually built, and what trade-offs did you make?",
+      "outcome": "proven",
+      "power": "Product Ownership: MVP Forge",
+      "answer": "I scoped and shipped the ThinkQuota MVP in roughly four weeks, including live AI, an attempt gate, prompt budget and faculty dashboard. I deliberately cut a streak feature to protect the core experience. Separately, in the Cart Recovery AI Agent project I built enforced decision guardrails and reduced AI calls from eight to one per decision.",
+      "evidence": "ThinkQuota: MVP shipped in ~4 weeks, streak feature removed. Cart Recovery AI Agent project: AI calls 8 → 1; workflow rules met fatigue, complaint-risk and margin gates across 9 tests.",
+      "limitation": "The AI Agent results refer to the project’s nine test scenarios, not an asserted production rollout. ThinkQuota’s pilot economics are modeled separately from the MVP shipping result.",
+      "learning": "Keep testing real user activation after shipping and broaden edge-case coverage.",
+      "papa": "Ek taraf MVP ship kiya, doosri taraf AI cost kam ki. Yeh hui na ownership!",
+      "source": "Latest CV — ThinkQuota and Cart Recovery AI Agent bullets",
+      "supporting_material_suggestion": "Optional: show a relevant CV/project extract if available"
+    },
+    {
+      "id": "O2",
+      "arena": "ownership",
+      "name": "The ₹40 Crore Pipeline Ambush",
+      "difficulty": "Very Hard",
+      "question": "You say you added ₹40 crore to the lending pipeline. Does that mean the bank earned ₹40 crore in revenue?",
+      "outcome": "partial",
+      "power": "Commercial Launch: Pipeline Power",
+      "answer": "At TCS, I orchestrated an SME lending module launch across presales, delivery and account teams, adding ₹40 crore to the pipeline over two quarters. That is a real pipeline result. It does not mean ₹40 crore was booked as bank revenue or disbursed as loans. Separately, I helped guide a ₹10 crore budget shift using a marketing mix model built on three years of data from seven channels, improving return on spend by 12%.",
+      "evidence": "TCS: ₹40 Cr added to SME lending pipeline in 2 quarters; ₹10 Cr budget shift informed by 3 years of MMM data across 7 channels; return on spend +12%.",
+      "limitation": "Pipeline, disbursed principal, profit and revenue are different measures; the question’s revenue interpretation is too broad. The precise accomplishments remain true.",
+      "learning": "Track pipeline stage progression and realized value alongside growth of the initial opportunity pipeline.",
+      "papa": "Samajh gaya! Pipeline ki value ko revenue nahi bana diya. Imaandaar aur commercially sharp.",
+      "source": "Latest CV — TCS SME module and MMM bullets",
+      "supporting_material_suggestion": "Optional: show a relevant CV/project extract if available"
+    },
+    {
+      "id": "O3",
+      "arena": "ownership",
+      "name": "The Million-User Final Boss",
+      "difficulty": "Very Hard",
+      "question": "Have you personally taken a consumer AI product from launch to one million active users?",
+      "outcome": "learning",
+      "power": null,
+      "answer": "A zero-to-one-million active-user consumer AI scale-up is not listed in my CV. My work spans product shipping, conversion improvement, customer research and marketing analytics. I would use those foundations to validate activation and retention before attempting large-scale acquisition.",
+      "evidence": null,
+      "limitation": "The current CV does not list a personally owned launch-to-one-million-active-users case.",
+      "learning": "Shivam noted it down: pick one high-intent segment, define first-value activation, run cohort retention tests, then scale the acquisition channels that generate retained users.",
+      "papa": "Ek dil aur gaya, par sapna nahi. Infinite Learner mode activated!",
+      "source": "No matching 0-to-1M consumer AI scale-up listed in latest CV",
+      "supporting_material_suggestion": "Optional: show a relevant CV/project extract if available"
+    }
+  ],
+  "finale": {
+    "setup": "After three proof seals, Papa says: 'Beta, maine tumse mushkil sawaal pooche. Kuch ke jawab the, kuch mein tumne gap maana. Lekin tumne sach bola aur evidence dikhaya. Aakhri faisla meri beti ka hoga.'",
+    "daughter_entry": "Miss Growth: 'Papa, aapne Shivam ka past test kar liya. Lekin meri growth ke liye pehla experiment kya hoga?'",
+    "question": "If you joined Wispr Flow's India growth team, which audience would you test first, and how would you learn quickly?",
+    "choices": [
+      {
+        "id": "creators",
+        "label": "Content Creators",
+        "hypothesis": "Creators who draft scripts, captions and AI prompts may find spoken-first drafting useful.",
+        "pilot": "Recruit a small relevant creator cohort, demonstrate real before/after workflows, and compare activated users to viewers or referrals.",
+        "measure": "Signup-to-first-successful-dictation activation, weekly active usage, D7 retention and cost per retained user.",
+        "risk": "A viral video can attract curiosity without habitual product use."
+      },
+      {
+        "id": "students",
+        "label": "Students",
+        "hypothesis": "Some students may prefer speaking initial notes, assignments or AI prompts, if the product fits their workflow.",
+        "pilot": "Test campus workshops and ambassador referrals with real tasks, then interview retained and churned users.",
+        "measure": "Activation, repeat weekly dictation, D7 retention and referral conversion.",
+        "risk": "High trial volume may conceal low willingness to adopt the habit."
+      },
+      {
+        "id": "founders",
+        "label": "Startup Founders",
+        "hypothesis": "Busy founders who frequently context-switch may value speaking long instructions into the tools they already use.",
+        "pilot": "Run a small workflow-based cohort test around emails, notes and AI prompts; compare follow-through after onboarding.",
+        "measure": "First-week activation, repeat usage, qualitative time saved, cost per activated user.",
+        "risk": "A compelling demo may not survive daily task switching and privacy concerns."
+      }
+    ],
+    "ending_papa": "Papa: 'Rishta approve karne ka decision abhi real-world interview ka hai.'",
+    "ending_daughter": "Miss Growth: 'Papa, shaadi ka toh pata nahi… par interview toh banta hai!'",
+    "ending_screen": "RISHTA SHORTLISTED! — Fictional game achievement, not an actual hiring decision. A finite challenge. An infinite learner."
+  },
+  "game_rules": {
+    "starting_hearts": 3,
+    "attack_outcomes": {
+      "proven": "Full defense; no heart loss; the accomplishment in the latest CV is accepted as true; retain precise scope and metrics.",
+      "partial": "Relevant real resume power is available, but the Father’s question overstates or conflates what the true achievement measures; no heart loss.",
+      "learning": "No directly matching accomplishment is listed in this CV; lose one heart once per unique attack; log a specific next-step learning plan without asserting the user has no other experience."
+    },
+    "repeat_attacks": "Do not deduct a heart twice for the same attack in the same run.",
+    "arena_completion": "At least one question or move resolved AND the mandatory core-proof spotlight viewed in that arena. Optional additional attacks remain accessible.",
+    "father_path": "Choose questions and challenge evidence; can select 'Show proof' or 'Not convinced', where latter opens a deeper limitation. Do not auto-endorse unsupported results.",
+    "shivam_path": "Choose one of three skills per arena; weak move loses one heart once per arena/move and offers meaningful retry; correct move unlocks same proof spotlight.",
+    "zero_hearts": "Trigger Infinite Learner Comeback animation; preserve journal and previous losses; restore one playable heart and allow continuation, never softlock or pretend gaps are completed accomplishments.",
+    "finale_unlock": "All three arena core-proof spotlights viewed; may reach ending with gaps still in journal.",
+    "ending": "Fictional shortlisted, not an actual hiring offer.",
+    "time_target": "3–4 minutes for minimum path, optional deep dives longer",
+    "core_proof_requires_truthfulness": "Treat latest CV facts as true and present them directly. Keep accurate meanings of achieved outcomes, future targets, modeled scenarios and project test results.",
+    "resume_vault": "Make all 21 resume powers discoverable. Treat completed CV achievements as true; distinguish future targets, model projections, and classroom/project tests as described.",
+    "attack_count": 9
+  },
+  "personal_links": {
+    "cv_url": "REPLACE_WITH_REAL_PUBLIC_CV_URL",
+    "linkedin_url": "REPLACE_WITH_REAL_LINKEDIN_URL",
+    "contact_url": "REPLACE_WITH_REAL_CONTACT_LINK"
+  },
+  "voice_proof": {
+    "status": "placeholder until real Wispr Flow build recordings are supplied",
+    "instructions": "Never simulate a fake recording of using Wispr Flow. A Behind the Build section may include genuine screenshots or video later."
+  },
+  "optional_origin_cards": [
+    {
+      "title": "An Engineer Who Became a Growth Marketer",
+      "copy": "Shivam earned a B.E. in Computer Science, worked at TCS on measurable customer and commercial initiatives, then built marketing and AI products through HABER, ThinkQuota and other projects."
+    },
+    {
+      "title": "Research That Moves Decisions",
+      "copy": "From analyzing 50,000 banking customers and 12 interviews to auditing 29 Parle outlets, Shivam moves from data to the human behavior behind it."
+    },
+    {
+      "title": "Ship, Measure, Improve",
+      "copy": "At ThinkQuota Shivam shipped an MVP in about four weeks; at HABER he automated AI visibility research; at TCS he ran experiments and measured incrementality."
+    },
+    {
+      "title": "A Finite Challenge. An Infinite Learner.",
+      "copy": "When a question falls outside the experience listed in the CV, Shivam does not bluff: he loses a heart, records a learning plan and tries again."
+    }
+  ],
+  "resume_source": "shivam_latest_cv.pdf (uploaded 4 November 2026); all listed achievements treated as factual game canon",
+  "resume_power_vault": [
+    {
+      "id": "P01",
+      "label": "Conversion A/B Testing",
+      "source": "TCS",
+      "achievement_type": "Achieved",
+      "fact": "Raised pre-approved in-app loan offer conversion from 1.5% to 2.4% (+60% relative) by A/B testing placement and copy.",
+      "status": "true_as_supplied_in_latest_cv",
+      "role": "Display the achievement faithfully with its exact scope and outcome type."
+    },
+    {
+      "id": "P02",
+      "label": "Causal CRM Measurement",
+      "source": "TCS",
+      "achievement_type": "Achieved",
+      "fact": "Used 10% holdout groups to prove ₹12 Cr incremental annual card spend and retired 4 low-performing CRM campaigns.",
+      "status": "true_as_supplied_in_latest_cv",
+      "role": "Display the achievement faithfully with its exact scope and outcome type."
+    },
+    {
+      "id": "P03",
+      "label": "Customer Segmentation and Repositioning",
+      "source": "TCS",
+      "achievement_type": "Achieved",
+      "fact": "Analyzed 50K under-30 customer records and 12 interviews; lifted Central Bank of India savings account openings 45%.",
+      "status": "true_as_supplied_in_latest_cv",
+      "role": "Display the achievement faithfully with its exact scope and outcome type."
+    },
+    {
+      "id": "P04",
+      "label": "Cross-Functional SME Lending Launch",
+      "source": "TCS",
+      "achievement_type": "Achieved",
+      "fact": "Orchestrated SME lending module launch across presales, delivery and account teams; added ₹40 Cr to pipeline in two quarters.",
+      "status": "true_as_supplied_in_latest_cv",
+      "role": "Display the achievement faithfully with its exact scope and outcome type."
+    },
+    {
+      "id": "P05",
+      "label": "Voice of Customer and NPS",
+      "source": "TCS",
+      "achievement_type": "Achieved",
+      "fact": "Analyzed 4,000 responses, identified delayed claims updates as the main detractor, prompted in-app tracking and lifted NPS by 9 points.",
+      "status": "true_as_supplied_in_latest_cv",
+      "role": "Display the achievement faithfully with its exact scope and outcome type."
+    },
+    {
+      "id": "P06",
+      "label": "YouTube Brand Lift Measurement",
+      "source": "TCS",
+      "achievement_type": "Achieved",
+      "fact": "Used a YouTube Brand Lift study to prove +8 percentage points in ad recall and +3 percentage points in consideration for a plan launch.",
+      "status": "true_as_supplied_in_latest_cv",
+      "role": "Display the achievement faithfully with its exact scope and outcome type."
+    },
+    {
+      "id": "P07",
+      "label": "Marketing Mix Modeling",
+      "source": "TCS",
+      "achievement_type": "Achieved",
+      "fact": "Guided a ₹10 Cr budget shift using a marketing mix model built on three years of data from seven channels; raised return on spend 12%.",
+      "status": "true_as_supplied_in_latest_cv",
+      "role": "Display the achievement faithfully with its exact scope and outcome type."
+    },
+    {
+      "id": "P08",
+      "label": "Paid Search and GA4 Analysis",
+      "source": "HABER",
+      "achievement_type": "Achieved",
+      "fact": "Used GA4 paid-organic engagement gap to guide budget reallocation while Paid Search traffic rose 40.6% and key events rose 47.2%.",
+      "status": "true_as_supplied_in_latest_cv",
+      "role": "Display the achievement faithfully with its exact scope and outcome type."
+    },
+    {
+      "id": "P09",
+      "label": "Search Ad Creative A/B Testing",
+      "source": "HABER",
+      "achievement_type": "Achieved",
+      "fact": "Across 4 B2B campaigns AI-led CTR rose 2.27%→6.22%, and action-led copy reached 10.73% vs 7.01%.",
+      "status": "true_as_supplied_in_latest_cv",
+      "role": "Display the achievement faithfully with its exact scope and outcome type."
+    },
+    {
+      "id": "P10",
+      "label": "Intent-Based Keyword Economics",
+      "source": "HABER",
+      "achievement_type": "Achieved",
+      "fact": "Identified high-intent APS keywords at ₹94.77 CPC versus ₹292.68 (3.1x cheaper), as described in latest CV.",
+      "status": "true_as_supplied_in_latest_cv",
+      "role": "Display the achievement faithfully with its exact scope and outcome type."
+    },
+    {
+      "id": "P11",
+      "label": "Technical SEO Fixes",
+      "source": "HABER",
+      "achievement_type": "Achieved",
+      "fact": "Raised site health 84%→96%, cut issues 71% and unblocked 4,900 crawler resources.",
+      "status": "true_as_supplied_in_latest_cv",
+      "role": "Display the achievement faithfully with its exact scope and outcome type."
+    },
+    {
+      "id": "P12",
+      "label": "Keyword Classification Automation",
+      "source": "HABER",
+      "achievement_type": "Achieved",
+      "fact": "Cut classification time ~96% (~13 hours→under 30 minutes) by sorting 2,500+ terms into 5 B2B intent angles.",
+      "status": "true_as_supplied_in_latest_cv",
+      "role": "Display the achievement faithfully with its exact scope and outcome type."
+    },
+    {
+      "id": "P13",
+      "label": "B2B Funnel Diagnostics",
+      "source": "HABER",
+      "achievement_type": "Achieved",
+      "fact": "Analyzed 56,290 GA4 events across 8,862 users with Microsoft Clarity and flagged poor CTA visibility for redesign.",
+      "status": "true_as_supplied_in_latest_cv",
+      "role": "Display the achievement faithfully with its exact scope and outcome type."
+    },
+    {
+      "id": "P14",
+      "label": "Search Discovery and Strategy",
+      "source": "HABER",
+      "achievement_type": "Analysis and strategy",
+      "fact": "Found 92.7% brand-led organic traffic despite organic clicks +36.9% and impressions +40.4%; developed non-brand SEO strategy.",
+      "status": "true_as_supplied_in_latest_cv",
+      "role": "Display the achievement faithfully with its exact scope and outcome type."
+    },
+    {
+      "id": "P15",
+      "label": "GEO Workflow Automation",
+      "source": "HABER",
+      "achievement_type": "Achieved",
+      "fact": "Built AI-visibility research pipeline, cutting prep from 12 hours to under 1 hour (~90%) and increasing audit frequency 12× (quarterly to weekly).",
+      "status": "true_as_supplied_in_latest_cv",
+      "role": "Display the achievement faithfully with its exact scope and outcome type."
+    },
+    {
+      "id": "P16",
+      "label": "Retailer GTM Research",
+      "source": "Parle Products",
+      "achievement_type": "Research and strategy",
+      "fact": "Audited 29 GT and MT outlets; observed 31% shelf absence and retailer choice behind two-thirds; higher SKU depth correlated with 10.25% vs 8.67% margins; developed four-lever GTM.",
+      "status": "true_as_supplied_in_latest_cv",
+      "role": "Display the achievement faithfully with its exact scope and outcome type."
+    },
+    {
+      "id": "P17",
+      "label": "Pricing and Competitor Mapping",
+      "source": "Nobero",
+      "achievement_type": "Research and strategy",
+      "fact": "Designed ₹449–₹2,499 three-tier ladder; analyzed 77% discount against 39–45% at rivals; mapped 69,000+ marketplace listings.",
+      "status": "true_as_supplied_in_latest_cv",
+      "role": "Display the achievement faithfully with its exact scope and outcome type."
+    },
+    {
+      "id": "P18",
+      "label": "Growth Planning and Targets",
+      "source": "Nobero",
+      "achievement_type": "Plan and future target",
+      "fact": "Designed 30-day, 6-month and FY28 roadmap with 8 actions and 6 KPIs; separately set FY29 targets for Google rating 2.2→4.3 and branded share 8%→16%.",
+      "status": "true_as_supplied_in_latest_cv",
+      "role": "Display the achievement faithfully with its exact scope and outcome type."
+    },
+    {
+      "id": "P19",
+      "label": "AI Cart Recovery Agent",
+      "source": "Cart Recovery AI Agent — Target Corporation Project",
+      "achievement_type": "Project built and tested",
+      "fact": "Designed free-delivery-first margin-aware recovery agent; cut Claude Haiku calls 8→1; met fatigue, complaint-risk and margin gates in all 9 test runs.",
+      "status": "true_as_supplied_in_latest_cv",
+      "role": "Display the achievement faithfully with its exact scope and outcome type."
+    },
+    {
+      "id": "P20",
+      "label": "ThinkQuota MVP and GTM",
+      "source": "ThinkQuota",
+      "achievement_type": "Shipped MVP, modeled business case",
+      "fact": "Shipped MVP in ~4 weeks with live AI, attempt gate, prompt budget and faculty dashboard; cut streak feature; modeled ₹1,200–₹2,000 pricing and 53–60% gross margin at ₹1,500; live demo earned pilot buying interest.",
+      "status": "true_as_supplied_in_latest_cv",
+      "role": "Display the achievement faithfully with its exact scope and outcome type."
+    },
+    {
+      "id": "P21",
+      "label": "Mentoring and Leadership",
+      "source": "PrepHustle",
+      "achievement_type": "Achieved",
+      "fact": "Mentored 8 aspirants with selections at 11 IIMs; ran 25+ mock GD/PI sessions; received 9.2/10 average mentee rating.",
+      "status": "true_as_supplied_in_latest_cv",
+      "role": "Display the achievement faithfully with its exact scope and outcome type."
+    }
+  ],
+  "factual_integrity_guards": [
+    "All completed outcomes and figures in the latest CV are accepted as true and stated directly.",
+    "Distinguish 1.5%→2.4% conversion as +0.9 percentage points and +60% relative.",
+    "Treat TCS 10% holdout and ₹12 Cr incremental annual card spend as a genuine measured outcome.",
+    "Treat the ₹40 Cr SME lending result as an achieved pipeline addition over two quarters, not booked revenue or disbursed principal.",
+    "Use exact HABER CPC wording: 3.1× cheaper identified APS keywords ₹94.77 versus ₹292.68; do not invent campaign-wide CAC.",
+    "Treat the 8→1 AI-call reduction and nine successful guardrail tests as achieved project results; do not invent production rollout to Target Corporation.",
+    "Treat Nobero FY29 KPI figures as targets, and ThinkQuota commercial projections as modeled outcomes, because that is how the CV describes them.",
+    "Do not claim completed Wispr Flow user interviews or a nationwide consumer AI creator program unless separately provided.",
+    "Preserve Miss Growth’s own final strategic question, independently of the Father and Shivam paths.",
+    "Never fabricate voice-use recordings, employer endorsements, live offer or real hiring shortlist."
+  ]
+}
