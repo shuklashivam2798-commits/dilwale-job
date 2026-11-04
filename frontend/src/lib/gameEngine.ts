@@ -6,11 +6,12 @@
 // comeback), Learning Journal (journal[]), seals (badges[]), Miss Growth finale (finaleChoice).
 
 export type JourneyId = "father" | "shivam";
-export type Phase = "title" | "intro" | "select" | "journey";
+export type Phase = "title" | "intro" | "select" | "journey" | "finale";
 export type AttackOutcome = "proven" | "partial" | "learning";
 
 export const STARTING_HEARTS = 3;
 export const STATE_VERSION = 1;
+export const FINALE_SPOTLIGHTS = 3;
 
 export interface JournalEntry {
   /** Unique key of the thing that produced the note (attack id, move id…) — dedupes entries. */
@@ -58,6 +59,7 @@ export type GameAction =
   | { type: "RECORD_ATTACK"; key: string; outcome: AttackOutcome }
   | { type: "ENTER_ARENA"; arenaId: string }
   | { type: "LEAVE_ARENA" }
+  | { type: "OPEN_FINALE" }
   | { type: "LOSE_HEART"; key: string; entry?: Omit<JournalEntry, "key" | "at"> }
   | { type: "ADD_JOURNAL"; key: string; title: string; note: string }
   | { type: "VIEW_SPOTLIGHT"; arenaId: string; badge?: string }
@@ -120,6 +122,10 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
       return state.journey ? { ...state, activeArena: action.arenaId } : state;
     case "LEAVE_ARENA":
       return { ...state, activeArena: null };
+    case "OPEN_FINALE":
+      // Unlock rule: all three arena core-proof spotlights viewed (gaps may remain in the journal).
+      if (!state.journey || state.progress[state.journey].spotlightsViewed.length < FINALE_SPOTLIGHTS) return state;
+      return { ...state, phase: "finale", activeArena: null };
     case "TOGGLE_MUTE":
       return { ...state, muted: !state.muted };
     case "RESOLVE":
@@ -194,10 +200,10 @@ export function hydrateState(raw: unknown): GameState {
   if (!raw || typeof raw !== "object") return base;
   const r = raw as Partial<GameState>;
   if (r.version !== STATE_VERSION) return base;
-  const phases: Phase[] = ["title", "intro", "select", "journey"];
+  const phases: Phase[] = ["title", "intro", "select", "journey", "finale"];
   const journey = r.journey === "father" || r.journey === "shivam" ? r.journey : null;
   let phase: Phase = phases.includes(r.phase as Phase) ? (r.phase as Phase) : "title";
-  if (phase === "journey" && !journey) phase = "select";
+  if ((phase === "journey" || phase === "finale") && !journey) phase = "select";
   return {
     version: STATE_VERSION,
     phase,

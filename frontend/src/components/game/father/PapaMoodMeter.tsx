@@ -1,14 +1,19 @@
-import { motion } from "motion/react";
+import { useMemo, type ReactElement } from "react";
+import { motion, type TargetAndTransition, type Transition } from "motion/react";
 import { PAPA_MAX_POINTS, PAPA_STAGES, papaImpression, type AttackOutcome } from "@/lib/gameEngine";
 import { PAPA_STAGE_COPY } from "@/lib/script";
 import { cn } from "@/lib/utils";
 import { PapaSprite } from "@/components/game/Sprites";
 
+const BAR_TRANSITION: Transition = { duration: 0.6, ease: "easeOut" };
+
 /** Papa's Skeptical → Impressed meter, driven purely by resolved attack outcomes. */
-export function PapaMoodMeter({ outcomes, className }: { outcomes: Record<string, AttackOutcome>; className?: string }) {
+export function PapaMoodMeter({ outcomes, className }: { outcomes: Record<string, AttackOutcome>; className?: string }): ReactElement {
   const { points, stage } = papaImpression(outcomes);
   const copy = PAPA_STAGE_COPY[stage];
   const stageIndex = PAPA_STAGES.indexOf(stage);
+  const percent = Math.min(100, (points / PAPA_MAX_POINTS) * 100);
+  const barAnimate = useMemo<TargetAndTransition>(() => ({ width: `${percent}%` }), [percent]);
 
   return (
     <div
@@ -30,12 +35,7 @@ export function PapaMoodMeter({ outcomes, className }: { outcomes: Record<string
           ))}
         </div>
         <div className="mt-1 h-1 w-full bg-rose-950/60">
-          <motion.div
-            className="h-full bg-gold"
-            initial={false}
-            animate={{ width: `${Math.min(100, (points / PAPA_MAX_POINTS) * 100)}%` }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-          />
+          <motion.div className="h-full bg-gold" initial={false} animate={barAnimate} transition={BAR_TRANSITION} />
         </div>
         <p className="mt-2 text-sm italic leading-snug text-rose-100" data-testid="papa-mood-line">
           “{copy.line}”

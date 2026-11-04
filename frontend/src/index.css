@@ -120,6 +120,12 @@
     }
 }
 
+/* Finale confetti */
+@keyframes confetti-fall {
+    0% { transform: translateY(-12vh) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(112vh) rotate(var(--spin, 540deg)); opacity: 0.9; }
+}
+
 /* Flying resume particles: direction via custom properties set inline */
 @keyframes resume-fly {
     0% { transform: translate(0, 0) rotate(var(--r0, 0deg)); opacity: 0; }
@@ -213,6 +219,9 @@
     animation: resume-fly var(--dur, 7s) linear infinite;
     animation-delay: var(--delay, 0s);
   }
+  .confetti-piece {
+    animation: confetti-fall var(--dur, 4s) linear var(--delay, 0s) infinite;
+  }
   .notebook-paper {
     background-color: #FFF8E7;
     background-image:
@@ -227,5 +236,5 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  .resume-particle { display: none; }
+  .resume-particle, .confetti-piece { display: none; }
 }

@@ -6,11 +6,12 @@ import { cn } from "@/lib/utils";
 import { typeStyle } from "@/lib/powerTypes";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 
+const NO_POWERS: ResumePower[] = [];
 const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 
 export function VaultDrawer({ open, onOpenChange }: { open: boolean; onOpenChange: (open: boolean) => void }) {
   const { data, isError, isPending } = useGameData();
-  const powers = isError ? [] : (data?.resume_power_vault ?? []);
+  const powers = useMemo(() => (isError ? NO_POWERS : (data?.resume_power_vault ?? NO_POWERS)), [isError, data]);
   const [filter, setFilter] = useState<string>("all");
   const [expanded, setExpanded] = useState<string | null>(null);
 

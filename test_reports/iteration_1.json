@@ -1,0 +1,90 @@
+{
+  "passed": 9,
+  "failed": 0,
+  "bugs": [],
+  "action_items": [
+    {
+      "type": "test_script_fixed",
+      "severity": "low",
+      "detail": "journey-select-and-switch check had a stale assumption (arena '-lock' testid) from an earlier app version where arenas unlocked sequentially; current spec has all 3 arenas open from the start (spec_deviations). Fixed the check to assert all 3 arena-enter buttons are visible instead of a lock badge."
+    },
+    {
+      "type": "test_script_fixed",
+      "severity": "low",
+      "detail": "partial-and-learning-outcomes check wrongly asserted hearts stayed at 3 after an O3 learning outcome; acceptance matrix confirms learning attacks (G3/I3/O3) cost exactly one heart. Fixed assertion to expect hearts=2 after O3, matching observed (correct) app behavior."
+    }
+  ],
+  "retest_needed": false,
+  "checks": [
+    {
+      "criterion": "Opening cinematic + journey select still work after refactor",
+      "name": "opening-cinematic-flow",
+      "lane": "browser",
+      "status": "passed",
+      "evidence": "Title -> 'Start the Story' -> 4 cinematic beats with typewriter text, Next/Replay/Skip Intro visible, Skip Intro and Replay both exercised -> 'Choose your path' screen with both journey buttons visible."
+    },
+    {
+      "criterion": "Opening cinematic + journey select still work after refactor (journey select + switching)",
+      "name": "journey-select-and-switch",
+      "lane": "browser",
+      "status": "passed",
+      "evidence": "Fixed stale lock-testid assumption; verified Shivam hub shows 3 arena-enter buttons (all open), hub switch button and HUD menu 'switch journey' both correctly toggle between Father/Shivam hubs."
+    },
+    {
+      "criterion": "Father's Journey: all 9 question attacks resolve with the JSON outcome",
+      "name": "father-attack-sequence-g1",
+      "lane": "browser",
+      "status": "passed",
+      "evidence": "G1 attack launched, flight/scanning animation, battle-result[data-outcome=proven], 'Shivam used [power] from his resume!', Show Me Proof panel with metric tiles, Continue returns to arena."
+    },
+    {
+      "criterion": "Father's Journey: partial (O2) and learning (O3) outcomes + hearts",
+      "name": "partial-and-learning-outcomes",
+      "lane": "browser",
+      "status": "passed",
+      "evidence": "O2 -> battle-result[data-outcome=partial] with battle-partial-supports/not-claimed, Not Convinced Yet scope panel. O3 -> data-outcome=learning, 'Resume Power Not Found', transferable+learning-plan shown, hearts dropped 3->2 (fixed script assertion to match spec), proof panel '0 of 21', replaying O3 does not double-count resolved attacks."
+    },
+    {
+      "criterion": "Three-heart system + Infinite Learner comeback; Learning Journal persistence",
+      "name": "persistence-refresh-and-restart",
+      "lane": "browser",
+      "status": "passed",
+      "evidence": "G3 learning -> hearts 3->2, journal count 1; page reload preserves hearts=2 and journal=1; I3 -> hearts 1; O3 -> comeback dialog 'Hero abhi haara nahi hai!' auto-opens over result, Continue restores hearts=1, journal=3; HUD menu restart journey resets hearts to 3."
+    },
+    {
+      "criterion": "Proof spotlight + seals gate the finale",
+      "name": "papa-mood-progression-and-seals",
+      "lane": "browser",
+      "status": "passed",
+      "evidence": "G1 proven raises Papa mood to curious/impressed stages; opening Proof Spotlight after resolving an attack earns the Experimentation seal (journey-seals count increments)."
+    },
+    {
+      "criterion": "Shivam's Journey: 3 monster battles (weak/strong cards, journal, spotlight)",
+      "name": "shivam-monster-battle-and-journal",
+      "lane": "browser",
+      "status": "passed",
+      "evidence": "Growth arena shows business problem + 3 move-play cards; weak card -> monster-retry-button shown, Learning Journal entry added (count 1, note '#1 - The Budget Beast...'); strong card -> win, arena-open-spotlight-button reachable."
+    },
+    {
+      "criterion": "Miss Growth finale + ending on both journeys",
+      "name": "miss-growth-finale-and-ending",
+      "lane": "browser",
+      "status": "passed",
+      "evidence": "After resolving 1 attack + opening spotlight in each of 3 father arenas, 'Meet Miss Growth' becomes visible on hub; finale steps through finale-next-button, finale-choice-creators, finale-lock-in-button to finale-rishta-shortlisted with Papa/Miss Growth ending lines, confetti, tagline 'A finite challenge. An infinite learner.' and fictional-game-achievement disclaimer."
+    },
+    {
+      "criterion": "Persistence, restart, vault",
+      "name": "resume-power-vault-drawer",
+      "lane": "browser",
+      "status": "passed",
+      "evidence": "Vault drawer opens showing 21 cards, filter by achievement type works, tapping a card expands its detail."
+    },
+    {
+      "criterion": "Backend API data integrity for game engine",
+      "name": "test_tscheck_game_engine_data.py",
+      "lane": "backend",
+      "status": "passed",
+      "evidence": "GET http://localhost:8001/api/game -> 200; 3 pytest cases passed validating engine.json structure (father_attacks, arenas, powers) served to the frontend."
+    }
+  ]
+}

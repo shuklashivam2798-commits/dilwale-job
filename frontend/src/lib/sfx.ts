@@ -27,7 +27,8 @@ export function playSfx(kind: SfxKind): void {
       osc.stop(t + dur);
       t += dur;
     }
-  } catch {
-    /* audio unavailable — silently skip */
+  } catch (error) {
+    // audio unavailable (no Web Audio / blocked context) — the game stays silent
+    if (import.meta.env.DEV) console.warn("[sfx] audio unavailable", error);
   }
 }

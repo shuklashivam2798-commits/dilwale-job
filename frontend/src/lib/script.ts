@@ -106,5 +106,5 @@ export const REACTION_MOOD: Record<AttackOutcome, PapaMood> = {
 export const OUTCOME_COPY: Record<AttackOutcome, { label: string; chip: string; tone: string }> = {
   proven: { label: "Proven", chip: "Full defense · no heart lost", tone: "border-emerald-400 bg-emerald-950 text-emerald-300" },
   partial: { label: "Partial", chip: "Real power, narrower claim · no heart lost", tone: "border-amber-400 bg-amber-950 text-amber-300" },
-  learning: { label: "Learning", chip: "Gap logged for the Infinite Learner", tone: "border-rose-400 bg-rose-950 text-rose-300" },
+  learning: { label: "Learning", chip: "Shivam noted it down! · −1 heart, once", tone: "border-rose-400 bg-rose-950 text-rose-300" },
 };

@@ -1,5 +1,5 @@
 import { Heart, Volume2, VolumeX } from "lucide-react";
-import { useGame } from "@/lib/game-store";
+import { useGame } from "@/hooks/useGame";
 import { STARTING_HEARTS } from "@/lib/gameEngine";
 import { cn } from "@/lib/utils";
 

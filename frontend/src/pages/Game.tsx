@@ -1,7 +1,10 @@
-import { useEffect, useState } from "react";
-import { GameProvider, useGame } from "@/lib/game-store";
+import { useEffect, useState, type ReactElement } from "react";
+import { GameProvider } from "@/lib/game-store";
+import { useGame } from "@/hooks/useGame";
 import { Cinematic } from "@/components/game/Cinematic";
 import { ArenaScreen } from "@/components/game/father/ArenaScreen";
+import { FinaleScreen } from "@/components/game/finale/FinaleScreen";
+import { MonsterBattle } from "@/components/game/shivam/MonsterBattle";
 import { ComebackDialog, RestartDialog, type RestartScope } from "@/components/game/GameDialogs";
 import { Hud } from "@/components/game/Hud";
 import { JournalDrawer } from "@/components/game/JournalDrawer";
@@ -10,7 +13,7 @@ import { JourneySelect } from "@/components/game/JourneySelect";
 import { TitleScreen } from "@/components/game/TitleScreen";
 import { VaultDrawer } from "@/components/game/VaultDrawer";
 
-export default function Game() {
+export default function Game(): ReactElement {
   return (
     <GameProvider>
       <GameShell />
@@ -18,7 +21,7 @@ export default function Game() {
   );
 }
 
-function GameShell() {
+function GameShell(): ReactElement {
   const { state } = useGame();
   const [vaultOpen, setVaultOpen] = useState(false);
   const [journalOpen, setJournalOpen] = useState(false);
@@ -41,13 +44,7 @@ function GameShell() {
       <div aria-hidden className="scanlines pointer-events-none fixed inset-0" />
       <Hud onOpenVault={() => setVaultOpen(true)} onOpenJournal={() => setJournalOpen(true)} onRestart={setRestart} />
       <div className="relative">
-        {state.phase === "select" ? (
-          <JourneySelect />
-        ) : state.journey === "father" && state.activeArena ? (
-          <ArenaScreen />
-        ) : (
-          <JourneyHub onRestart={setRestart} />
-        )}
+        <ShellContent onRestart={setRestart} onOpenJournal={() => setJournalOpen(true)} />
       </div>
       <VaultDrawer open={vaultOpen} onOpenChange={setVaultOpen} />
       <JournalDrawer open={journalOpen} onOpenChange={setJournalOpen} />
@@ -55,4 +52,13 @@ function GameShell() {
       <ComebackDialog />
     </div>
   );
+}
+
+/** Which screen the shell shows: path select, finale, an arena (per journey), or the arena map. */
+function ShellContent({ onRestart, onOpenJournal }: { onRestart: (scope: RestartScope) => void; onOpenJournal: () => void }): ReactElement {
+  const { state } = useGame();
+  if (state.phase === "select") return <JourneySelect />;
+  if (state.phase === "finale") return <FinaleScreen onOpenJournal={onOpenJournal} />;
+  if (state.activeArena) return state.journey === "father" ? <ArenaScreen /> : <MonsterBattle />;
+  return <JourneyHub onRestart={onRestart} />;
 }

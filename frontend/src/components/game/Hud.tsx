@@ -1,5 +1,6 @@
+import type { ReactElement } from "react";
 import { Gem, Menu, NotebookPen } from "lucide-react";
-import { useGame } from "@/lib/game-store";
+import { useGame } from "@/hooks/useGame";
 import { JOURNEYS, OTHER_JOURNEY } from "@/lib/script";
 import { useGameData } from "@/hooks/useGameData";
 import {
@@ -20,7 +21,7 @@ interface HudProps {
   onRestart: (scope: "journey" | "all") => void;
 }
 
-export function Hud({ onOpenVault, onOpenJournal, onRestart }: HudProps) {
+export function Hud({ onOpenVault, onOpenJournal, onRestart }: HudProps): ReactElement {
   const { state, progress, dispatch, sfx } = useGame();
   const { data, isError } = useGameData();
   const vaultCount = isError ? 0 : (data?.resume_power_vault.length ?? 0);

@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { Check, RotateCcw, Swords, HelpCircle } from "lucide-react";
-import { useGame } from "@/lib/game-store";
+import { useGame } from "@/hooks/useGame";
 import type { JourneyId, JourneyProgress } from "@/lib/gameEngine";
 import { JOURNEYS } from "@/lib/script";
 import { cn } from "@/lib/utils";

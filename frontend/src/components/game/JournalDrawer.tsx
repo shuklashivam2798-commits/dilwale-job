@@ -1,5 +1,5 @@
 import { NotebookPen } from "lucide-react";
-import { useGame } from "@/lib/game-store";
+import { useGame } from "@/hooks/useGame";
 import { JOURNEYS } from "@/lib/script";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 

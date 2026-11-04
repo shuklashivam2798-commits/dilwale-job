@@ -1,5 +1,5 @@
 import { HeartPulse } from "lucide-react";
-import { useGame } from "@/lib/game-store";
+import { useGame } from "@/hooks/useGame";
 import { JOURNEYS } from "@/lib/script";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
