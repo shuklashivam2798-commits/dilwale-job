@@ -1,4 +1,4 @@
-import { useState, type ReactElement } from "react";
+import { useCallback, useState, type ReactElement } from "react";
 import { motion, type TargetAndTransition, type Transition } from "motion/react";
 import { ChevronRight, ExternalLink, FlaskConical, Gauge, NotebookPen, Repeat, RotateCcw, ShieldAlert, Target, Users } from "lucide-react";
 import { useGame } from "@/hooks/useGame";
@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { MissGrowthSprite, PapaSprite, ShivamSprite, type PapaMood } from "@/components/game/Sprites";
 import { Confetti, Sparkles } from "@/components/game/StageFx";
+import { Subtitle } from "@/components/game/Subtitle";
 import { Typewriter } from "@/components/game/Typewriter";
 
 type FinaleStep = "setup" | "daughter" | "question" | "choice" | "ending";
@@ -18,7 +19,6 @@ const STAMP_ANIMATE: TargetAndTransition = { scale: 1, opacity: 1, rotate: -4 };
 const STAMP_TRANSITION: Transition = { type: "spring", stiffness: 220, damping: 13, delay: 0.3 };
 const RISE_INITIAL: TargetAndTransition = { opacity: 0, y: 16 };
 const RISE_ANIMATE: TargetAndTransition = { opacity: 1, y: 0 };
-const noop = () => {};
 
 /** Text inside the outermost single quotes of a JSON line like "Papa: '...'" (whole string if none). */
 function quoteOf(line: string): string {
@@ -138,9 +138,29 @@ function FinaleStepView(props: FinaleStepViewProps): ReactElement {
   const { step, finale, choice, onNext, onPick } = props;
   switch (step) {
     case "setup":
-      return <DialogueLine speaker="Recruiter Papa" tone="bg-papa text-white" line={quoteOf(finale.setup)} cta="Continue" onNext={() => onNext("daughter")} />;
+      return (
+        <DialogueLine
+          key="setup"
+          speaker="Recruiter Papa"
+          tone="bg-papa text-white"
+          line={quoteOf(finale.setup)}
+          subtitle={finale.setup_en}
+          cta="Continue"
+          onNext={() => onNext("daughter")}
+        />
+      );
     case "daughter":
-      return <DialogueLine speaker="Miss Growth" tone="bg-magenta text-white" line={quoteOf(finale.daughter_entry)} cta="Hear her challenge" onNext={() => onNext("question")} />;
+      return (
+        <DialogueLine
+          key="daughter"
+          speaker="Miss Growth"
+          tone="bg-magenta text-white"
+          line={quoteOf(finale.daughter_entry)}
+          subtitle={finale.daughter_entry_en}
+          cta="Hear her challenge"
+          onNext={() => onNext("question")}
+        />
+      );
     case "question":
       return <QuestionView finale={finale} onPick={onPick} />;
     case "choice":
@@ -154,19 +174,23 @@ interface DialogueLineProps {
   speaker: string;
   tone: string;
   line: string;
+  subtitle: string | null;
   cta: string;
   onNext: () => void;
 }
 
-function DialogueLine({ speaker, tone, line, cta, onNext }: DialogueLineProps): ReactElement {
+function DialogueLine({ speaker, tone, line, subtitle, cta, onNext }: DialogueLineProps): ReactElement {
+  const [typed, setTyped] = useState(false);
+  const markTyped = useCallback(() => setTyped(true), []);
   return (
     <section className="pixel-frame relative rounded-sm bg-dialog px-5 pb-5 pt-6 sm:px-7" aria-live="polite" data-testid="finale-dialogue">
       <span className={cn("absolute -top-3 left-6 rounded-sm px-3 py-1 font-mono text-[11px] font-semibold uppercase tracking-widest shadow-[3px_3px_0_#0D0714]", tone)} data-testid="finale-speaker">
         {speaker}
       </span>
       <p className="font-heading text-lg font-bold leading-snug text-white sm:text-2xl">
-        <Typewriter key={line} text={line} complete={false} onDone={noop} speed={20} data-testid="finale-line" />
+        <Typewriter key={line} text={line} complete={false} onDone={markTyped} speed={20} data-testid="finale-line" />
       </p>
+      <Subtitle text={subtitle} visible={typed} data-testid="finale-line-subtitle" />
       <div className="mt-4 flex justify-end">
         <Button onClick={onNext} className="h-10 rounded-sm px-4 font-heading font-bold uppercase shadow-[3px_3px_0_#7C2D12]" data-testid="finale-next-button">
           {cta} <ChevronRight className="size-4" />
@@ -263,10 +287,12 @@ function EndingView({ finale, choice, engine, journalCount, onNext, onOpenJourna
       <div className="relative rounded-sm border-2 border-papa/70 bg-[#220D1A] px-5 pb-4 pt-6">
         <span className="absolute -top-3 left-5 rounded-sm bg-papa px-2.5 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-widest text-white">Recruiter Papa</span>
         <p className="font-heading text-lg font-bold text-white" data-testid="finale-ending-papa">“{quoteOf(finale.ending_papa)}”</p>
+        <Subtitle text={finale.ending_papa_en} className="text-rose-200/80" data-testid="finale-ending-papa-subtitle" />
       </div>
       <div className="relative rounded-sm border-2 border-magenta/70 bg-[#2A0F3D] px-5 pb-4 pt-6">
         <span className="absolute -top-3 left-5 rounded-sm bg-magenta px-2.5 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-widest text-white">Miss Growth</span>
         <p className="font-heading text-xl font-bold text-white" data-testid="finale-ending-daughter">“{quoteOf(finale.ending_daughter)}”</p>
+        <Subtitle text={finale.ending_daughter_en} data-testid="finale-ending-daughter-subtitle" />
       </div>
 
       <div className="flex flex-col items-center py-4 text-center">

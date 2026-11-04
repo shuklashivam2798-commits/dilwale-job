@@ -89,11 +89,21 @@ export const JOURNEYS: Record<JourneyId, JourneyCopy> = {
 export const OTHER_JOURNEY: Record<JourneyId, JourneyId> = { father: "shivam", shivam: "father" };
 
 // ---- Father's Journey flavour copy (Papa's personality only — never CV facts) ----
-export const PAPA_STAGE_COPY: Record<PapaStage, { label: string; line: string; mood: PapaMood }> = {
-  skeptical: { label: "Skeptical", line: "Resume toh sab ke paas hota hai, beta. Proof kahan hai?", mood: "skeptical" },
-  curious: { label: "Curious", line: "Hmm… ladka kuch toh jaanta hai.", mood: "curious" },
-  warming: { label: "Warming Up", line: "Accha! Har jawaab ke saath number aur scope bhi?", mood: "pleased" },
-  impressed: { label: "Impressed", line: "Beta, ab toh Papa bhi fan ho gaye!", mood: "impressed" },
+export const PAPA_STAGE_COPY: Record<PapaStage, { label: string; line: string; subtitle: string; mood: PapaMood }> = {
+  skeptical: {
+    label: "Skeptical",
+    line: "Resume toh sab ke paas hota hai, beta. Proof kahan hai?",
+    subtitle: "Everyone has a resume, son. Where's the proof?",
+    mood: "skeptical",
+  },
+  curious: { label: "Curious", line: "Hmm… ladka kuch toh jaanta hai.", subtitle: "Hmm… the boy does know a thing or two.", mood: "curious" },
+  warming: {
+    label: "Warming Up",
+    line: "Accha! Har jawaab ke saath number aur scope bhi?",
+    subtitle: "Oh! Numbers and scope with every single answer?",
+    mood: "pleased",
+  },
+  impressed: { label: "Impressed", line: "Beta, ab toh Papa bhi fan ho gaye!", subtitle: "Son, now even Papa has become a fan!", mood: "impressed" },
 };
 
 /** Papa's face while delivering his JSON reaction line, per outcome. */

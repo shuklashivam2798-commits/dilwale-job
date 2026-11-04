@@ -4,6 +4,7 @@ import { PAPA_MAX_POINTS, PAPA_STAGES, papaImpression, type AttackOutcome } from
 import { PAPA_STAGE_COPY } from "@/lib/script";
 import { cn } from "@/lib/utils";
 import { PapaSprite } from "@/components/game/Sprites";
+import { Subtitle } from "@/components/game/Subtitle";
 
 const BAR_TRANSITION: Transition = { duration: 0.6, ease: "easeOut" };
 
@@ -40,6 +41,7 @@ export function PapaMoodMeter({ outcomes, className }: { outcomes: Record<string
         <p className="mt-2 text-sm italic leading-snug text-rose-100" data-testid="papa-mood-line">
           “{copy.line}”
         </p>
+        <Subtitle text={copy.subtitle} className="mt-1 text-xs text-rose-200/80" data-testid="papa-mood-subtitle" />
       </div>
     </div>
   );

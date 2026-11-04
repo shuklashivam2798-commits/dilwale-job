@@ -159,6 +159,7 @@
       "limitation": "The 60% is a relative increase, not 60 percentage points. This result is specific to the tested loan offer, not every banking product.",
       "learning": "For the next experiment, track qualified outcomes beyond the initial offer conversion.",
       "papa": "Wah beta! Percent aur percentage point ka chakkar bhi clear hai. Counterattack successful!",
+      "papa_en": "Well done, son! You've even cleared up the percent vs. percentage-point confusion. Counterattack successful!",
       "source": "Latest CV — TCS loan-offer conversion bullet",
       "supporting_material_suggestion": "Optional proof drawer: original test setup and metric breakdown",
       "proof": {
@@ -211,6 +212,7 @@
       "limitation": "Incremental card spend is not the same metric as profit or bank revenue. The holdout was the basis for incrementality measurement.",
       "learning": "Continue testing long-term lift and profitability before scaling further.",
       "papa": "Control group bhi? Yeh toh asli marketing science ka jaadu hai!",
+      "papa_en": "A control group too? Now that's real marketing-science magic!",
       "source": "Latest CV — TCS CRM incremental spend bullet",
       "supporting_material_suggestion": "Optional: show a relevant CV/project extract if available",
       "proof": {
@@ -258,6 +260,7 @@
       "limitation": "No directly matching nationwide creator-growth program appears in the supplied CV. That is an absence of listed evidence, not a claim that such experience can never exist.",
       "learning": "Shivam noted it down: shortlist 10 relevant creators, test voice-workflow demos, measure activated users, D7 retention and cost per retained user before scaling.",
       "papa": "Ek heart gaya! Lekin beta ne sawal notebook mein likh liya.",
+      "papa_en": "One heart gone! But the boy wrote the question down in his notebook.",
       "source": "No direct corresponding bullet in latest CV",
       "supporting_material_suggestion": "Optional: show a relevant CV/project extract if available",
       "proof": {
@@ -290,6 +293,7 @@
       "limitation": "The outcome refers to the savings account-opening initiative and should not be presented as growth across the bank’s entire customer base.",
       "learning": "Keep connecting qualitative motivations with behavior and measured results.",
       "papa": "Pehle logon ko samjha, phir positioning badli. Papa impressed!",
+      "papa_en": "First he understood the people, then he changed the positioning. Papa is impressed!",
       "source": "Latest CV — TCS Central Bank savings account bullet",
       "supporting_material_suggestion": "Optional: show a relevant CV/project extract if available",
       "proof": {
@@ -337,6 +341,7 @@
       "limitation": "The research covers 29 audited outlets; the four-lever plan is a proposed strategy, not a claimed nationwide realized sales result.",
       "learning": "Validate the retailer-insight pattern in additional stores before broader rollout.",
       "papa": "Bas Excel mein nahi, dukaan mein bhi research ki! Bahut badhiya.",
+      "papa_en": "Not just in Excel — he did his research in the shops too! Very good.",
       "source": "Latest CV — Parle bullets 1–3",
       "supporting_material_suggestion": "Optional: show a relevant CV/project extract if available",
       "proof": {
@@ -389,6 +394,7 @@
       "limitation": "The latest CV does not identify a completed Wispr Flow-specific user research study.",
       "learning": "Shivam noted it down: interview trial users and non-users across multiple segments, map triggers and existing workarounds, then compare findings against activation and repeat usage.",
       "papa": "Good. Customer se pooche bina unka answer assume nahi karna chahiye.",
+      "papa_en": "Good. You should never assume a customer's answer without asking them.",
       "source": "No Wispr Flow user interview accomplishment listed in latest CV",
       "supporting_material_suggestion": "Optional: show a relevant CV/project extract if available",
       "proof": {
@@ -420,6 +426,7 @@
       "limitation": "The AI Agent results refer to the project’s nine test scenarios, not an asserted production rollout. ThinkQuota’s pilot economics are modeled separately from the MVP shipping result.",
       "learning": "Keep testing real user activation after shipping and broaden edge-case coverage.",
       "papa": "Ek taraf MVP ship kiya, doosri taraf AI cost kam ki. Yeh hui na ownership!",
+      "papa_en": "On one side he shipped an MVP, on the other he cut AI costs. Now that's ownership!",
       "source": "Latest CV — ThinkQuota and Cart Recovery AI Agent bullets",
       "supporting_material_suggestion": "Optional: show a relevant CV/project extract if available",
       "proof": {
@@ -470,6 +477,7 @@
       "limitation": "Pipeline, disbursed principal, profit and revenue are different measures; the question’s revenue interpretation is too broad. The precise accomplishments remain true.",
       "learning": "Track pipeline stage progression and realized value alongside growth of the initial opportunity pipeline.",
       "papa": "Samajh gaya! Pipeline ki value ko revenue nahi bana diya. Imaandaar aur commercially sharp.",
+      "papa_en": "Got it! He didn't pass off pipeline value as revenue. Honest and commercially sharp.",
       "source": "Latest CV — TCS SME module and MMM bullets",
       "supporting_material_suggestion": "Optional: show a relevant CV/project extract if available",
       "proof": {
@@ -524,6 +532,7 @@
       "limitation": "The current CV does not list a personally owned launch-to-one-million-active-users case.",
       "learning": "Shivam noted it down: pick one high-intent segment, define first-value activation, run cohort retention tests, then scale the acquisition channels that generate retained users.",
       "papa": "Ek dil aur gaya, par sapna nahi. Infinite Learner mode activated!",
+      "papa_en": "One more heart gone, but not the dream. Infinite Learner mode activated!",
       "source": "No matching 0-to-1M consumer AI scale-up listed in latest CV",
       "supporting_material_suggestion": "Optional: show a relevant CV/project extract if available",
       "proof": {
@@ -546,7 +555,9 @@
   ],
   "finale": {
     "setup": "After three proof seals, Papa says: 'Beta, maine tumse mushkil sawaal pooche. Kuch ke jawab the, kuch mein tumne gap maana. Lekin tumne sach bola aur evidence dikhaya. Aakhri faisla meri beti ka hoga.'",
+    "setup_en": "Son, I asked you tough questions. Some you had answers for, and on some you admitted the gap. But you told the truth and showed evidence. The final decision will be my daughter's.",
     "daughter_entry": "Miss Growth: 'Papa, aapne Shivam ka past test kar liya. Lekin meri growth ke liye pehla experiment kya hoga?'",
+    "daughter_entry_en": "Papa, you've tested Shivam's past. But what will be the first experiment for my growth?",
     "question": "If you joined Wispr Flow's India growth team, which audience would you test first, and how would you learn quickly?",
     "choices": [
       {
@@ -575,7 +586,9 @@
       }
     ],
     "ending_papa": "Papa: 'Rishta approve karne ka decision abhi real-world interview ka hai.'",
+    "ending_papa_en": "The decision to approve this match now rests with a real-world interview.",
     "ending_daughter": "Miss Growth: 'Papa, shaadi ka toh pata nahi… par interview toh banta hai!'",
+    "ending_daughter_en": "Papa, I'm not sure about the wedding… but he definitely deserves an interview!",
     "ending_screen": "RISHTA SHORTLISTED! — Fictional game achievement, not an actual hiring decision. A finite challenge. An infinite learner."
   },
   "game_rules": {

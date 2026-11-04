@@ -65,6 +65,7 @@ class FatherAttack(BaseModel):
     limitation: str
     learning: str
     papa: str
+    papa_en: Optional[str] = None  # English subtitle for the Hinglish `papa` line
     source: str
     supporting_material_suggestion: str
     proof: AttackProof = AttackProof()
@@ -87,6 +88,11 @@ class Finale(BaseModel):
     ending_papa: str
     ending_daughter: str
     ending_screen: str
+    # English subtitles for the quoted Hinglish dialogue above.
+    setup_en: Optional[str] = None
+    daughter_entry_en: Optional[str] = None
+    ending_papa_en: Optional[str] = None
+    ending_daughter_en: Optional[str] = None
 
 
 class GameRules(BaseModel):

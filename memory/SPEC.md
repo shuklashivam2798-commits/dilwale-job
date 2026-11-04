@@ -23,7 +23,7 @@ Characters: **Shivam** (hero/candidate), **Recruiter Papa** (skeptical father), 
 - Arena completion: ≥1 attack resolved unlocks Proof Spotlight (arena `core_proof` + `spotlight_powers` vault cards); opening it earns the seal (Experimentation/Insight/Ownership). 3 seals → finale teaser says unlocked for next chapter.
 - Papa mood: points proven 2 / partial 2 / learning 1 (max 15). Stages skeptical (0+), curious (2+), warming (6+), impressed (11+). PapaSprite moods: skeptical, angry, curious, pleased, impressed.
 - Learning outcomes (G3, I3, O3) dispatch LOSE_HEART keyed by attack id (once per unique attack, repeats never drain) + journal entry {title "ID · name", note JSON `learning`}.
-- `backend/data/engine.json` = user's JSON + derived fields only: `father_attacks[].proof` {contribution, decisions, metrics, related_powers, supports, not_claimed, transferable} (every line lifted from that attack's answer/evidence/limitation) and `arenas[].spotlight_powers`. Original untouched in memory/source/engine.json.
+- `backend/data/engine.json` = user's JSON + derived fields only: English subtitle fields (`papa_en`, `finale.*_en`), `father_attacks[].proof` {contribution, decisions, metrics, related_powers, supports, not_claimed, transferable} (every line lifted from that attack's answer/evidence/limitation) and `arenas[].spotlight_powers`. Original untouched in memory/source/engine.json.
 
 ## Phase 3 — Hearts, Shivam's Journey, Finale (built)
 - Hearts: start 3. Father learning attack or Shivam weak card → −1 once per unique key (`G3` / `growth:grow_blind`), journal note added. Reaching 0 → ComebackDialog "Hero abhi haara nahi hai!", hearts restored to 1, journal + losses kept (never softlocks).
@@ -31,6 +31,10 @@ Characters: **Shivam** (hero/candidate), **Recruiter Papa** (skeptical father), 
 - Shared arena UI in `components/game/ArenaParts.tsx` (SpotlightPanel, ArenaNav with "Meet Miss Growth", BackButton, ArenaFallback).
 - Finale (phase "finale", `components/game/finale/FinaleScreen.tsx`): OPEN_FINALE only when the journey has 3 spotlights viewed. Steps: Papa setup line → Miss Growth entry → JSON question + 3 audience cards (Content Creators / Students / Startup Founders) → detail (hypothesis, controlled pilot, measure, risk + "untested hypothesis" caveat) → Lock in (CHOOSE_FINALE) → ending: Papa + Miss Growth ending lines, confetti, "RISHTA SHORTLISTED!", tagline, fictional disclaimer, Replay as the Other Character, Try another audience, Learning Journal. Personal link buttons render only for real URLs (currently none).
 - Entry points to finale: hub finale card "Meet Miss Growth", arena nav button, spotlight dialog button (once 3 seals).
+
+## English subtitles (built)
+- Every Hinglish spoken line shows an italic English subtitle beneath it (shared `components/game/Subtitle.tsx`): cinematic beats (`CINEMATIC[].subtitle`), Papa mood-meter lines (`PAPA_STAGE_COPY[].subtitle`), the 9 Papa reaction lines (`father_attacks[].papa_en`), and finale dialogue (`finale.setup_en`, `daughter_entry_en`, `ending_papa_en`, `ending_daughter_en`). Finale typewriter lines fade their subtitle in once typing finishes.
+- User decision: only spoken dialogue is translated — titles/buttons (e.g. "Hero abhi haara nahi hai!", "Notebook abhi khaali hai.") stay Hinglish.
 
 ## Planned next steps (NOT built yet)
 Behind the Build voice slots (hero_moves, setbacks, retry, seals), Miss Growth finale (3 audience choices, RISHTA SHORTLISTED + fictional disclaimer), Behind the Build voice slots, personal links.

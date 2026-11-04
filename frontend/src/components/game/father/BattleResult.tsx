@@ -8,6 +8,7 @@ import type { FatherAttack, ResumePower } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { PowerMiniCard } from "@/components/game/PowerMiniCard";
+import { Subtitle } from "@/components/game/Subtitle";
 
 type Panel = "proof" | "scope";
 
@@ -78,7 +79,7 @@ export function BattleResult({ attack, powers, vaultSize, stageBefore, onContinu
         <p className="text-base leading-relaxed text-white sm:text-lg">{attack.answer}</p>
       </section>
       <OutcomeEvidence attack={attack} powers={powers} />
-      <PapaReaction line={attack.papa} stageBefore={stageBefore} stageAfter={stageAfter} />
+      <PapaReaction line={attack.papa} subtitle={attack.papa_en} stageBefore={stageBefore} stageAfter={stageAfter} />
       <ResultActions panel={panel} onToggle={toggle} onContinue={onContinue} />
       <AnimatePresence mode="wait">
         {panel && (
@@ -232,7 +233,14 @@ function SkillChips({ skills }: { skills: string[] }): ReactElement {
   );
 }
 
-function PapaReaction({ line, stageBefore, stageAfter }: { line: string; stageBefore: PapaStage; stageAfter: PapaStage }): ReactElement {
+interface PapaReactionProps {
+  line: string;
+  subtitle: string | null;
+  stageBefore: PapaStage;
+  stageAfter: PapaStage;
+}
+
+function PapaReaction({ line, subtitle, stageBefore, stageAfter }: PapaReactionProps): ReactElement {
   const moodText =
     stageAfter !== stageBefore
       ? `Papa's mood up: ${PAPA_STAGE_COPY[stageBefore].label} → ${PAPA_STAGE_COPY[stageAfter].label}`
@@ -247,6 +255,7 @@ function PapaReaction({ line, stageBefore, stageAfter }: { line: string; stageBe
     >
       <Plate tone="bg-papa text-white">Recruiter Papa</Plate>
       <p className="font-heading text-lg font-bold leading-snug text-white sm:text-xl">“{line}”</p>
+      <Subtitle text={subtitle} className="text-rose-200/80" data-testid="battle-papa-subtitle" />
       <p className="mt-2 font-mono text-[10px] font-semibold uppercase tracking-widest text-rose-300" data-testid="battle-papa-mood">
         {moodText}
       </p>

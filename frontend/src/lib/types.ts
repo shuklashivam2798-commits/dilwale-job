@@ -60,6 +60,8 @@ export interface FatherAttack {
   limitation: string;
   learning: string;
   papa: string;
+  /** English subtitle for the Hinglish `papa` line. */
+  papa_en: string | null;
   source: string;
   supporting_material_suggestion: string;
   proof: AttackProof;
@@ -82,6 +84,11 @@ export interface Finale {
   ending_papa: string;
   ending_daughter: string;
   ending_screen: string;
+  /** English subtitles for the quoted Hinglish dialogue above. */
+  setup_en: string | null;
+  daughter_entry_en: string | null;
+  ending_papa_en: string | null;
+  ending_daughter_en: string | null;
 }
 
 export interface GameRules {
