@@ -11,6 +11,10 @@ Characters: **Shivam** (hero/candidate), **Recruiter Papa** (skeptical father), 
 - **HUD**: hearts, Resume Power Vault drawer (21 cards, filter by achievement type, tap to expand), Learning Journal drawer (per journey, empty state), mute toggle (default muted, Web Audio blips only on user action), menu (replay intro, choose path, switch journey, restart journey, restart whole game with confirm dialog).
 - **Comeback dialog** "Hero abhi haara nahi hai!" wired to engine (fires when hearts would reach 0).
 
+## User decisions
+- Do NOT show the 4 optional origin/cast intro cards anywhere — the recruiter experience must start fast; Shivam's story is discovered through gameplay. (`optional_origin_cards` stays in the API data only.)
+- Build order: foundation (done) → Father's Arenas → Monster Battles → Miss Growth's Finale, one step at a time.
+
 ## Planned next steps (NOT built yet)
 Father arenas (9 question attacks, Scanning Resume Powers, Proven/Partial/Learning, Show Me Proof / Not Convinced Yet / Continue, spotlights), Shivam monster battles (hero_moves, setbacks, retry, seals), Miss Growth finale (3 audience choices, RISHTA SHORTLISTED + fictional disclaimer), Behind the Build voice slots, personal links.
 

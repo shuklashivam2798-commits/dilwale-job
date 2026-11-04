@@ -122,6 +122,7 @@ export function Cinematic() {
       >
         <div aria-hidden className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(139,92,246,0.45),transparent_60%),linear-gradient(to_bottom,#1B0B33,#0D0714)]" />
         <div aria-hidden className="scanlines absolute inset-0" />
+        <div aria-hidden className="stage-floor absolute inset-x-0 bottom-0 h-16" />
         <AnimatePresence mode="sync">
           <motion.div
             key={`${run}-${current.id}`}
@@ -134,7 +135,6 @@ export function Cinematic() {
             <Scene id={current.id} reduceMotion={reduceMotion} />
           </motion.div>
         </AnimatePresence>
-        <div aria-hidden className="stage-floor absolute inset-x-0 bottom-0 h-16" />
 
         {freeze && (
           <motion.div
