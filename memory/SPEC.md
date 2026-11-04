@@ -32,6 +32,12 @@ Characters: **Shivam** (hero/candidate), **Recruiter Papa** (skeptical father), 
 - Finale (phase "finale", `components/game/finale/FinaleScreen.tsx`): OPEN_FINALE only when the journey has 3 spotlights viewed. Steps: Papa setup line → Miss Growth entry → JSON question + 3 audience cards (Content Creators / Students / Startup Founders) → detail (hypothesis, controlled pilot, measure, risk + "untested hypothesis" caveat) → Lock in (CHOOSE_FINALE) → ending: Papa + Miss Growth ending lines, confetti, "RISHTA SHORTLISTED!", tagline, fictional disclaimer, Replay as the Other Character, Try another audience, Learning Journal. Personal link buttons render only for real URLs (currently none).
 - Entry points to finale: hub finale card "Meet Miss Growth", arena nav button, spotlight dialog button (once 3 seals).
 
+## Journey-specific spotlight framing (built)
+- Same feature, same data, same seal/progression mechanics; copy lives in `SPOTLIGHT_COPY` (lib/script.ts), passed as `copy` to the shared `SpotlightPanel` (ArenaParts) and `SpotlightDialog` (father/SpotlightDialog.tsx, used by both journeys).
+- Father: "Papa's Proof Inspection" · headline "Claims are easy. Where's the proof?" · button "Inspect Shivam's Evidence" · dialog = Challenge (arena `hero_problem`) + Evidence cards (Action / Measurable result).
+- Shivam: "Victory Debrief" · after the win "[Monster] Defeated!" + "Discover how Shivam used these same skills to solve real-world growth challenges." · button "Unlock Real-World Story" (earned: "View Real-World Story") · dialog = Real-world challenge + "Achievement unlocked" cards (Skill activated / Action he took / Measurable impact) with gold unlock flash.
+- Story cards come from the arena's `spotlight_powers` vault entries. The 9 spotlight powers carry `action` + `impact` (their CV `fact` split into two lines, no new claims); a card falls back to `fact` if those fields are missing.
+
 ## English subtitles (built)
 - Every Hinglish spoken line shows an italic English subtitle beneath it (shared `components/game/Subtitle.tsx`): cinematic beats (`CINEMATIC[].subtitle`), Papa mood-meter lines (`PAPA_STAGE_COPY[].subtitle`), the 9 Papa reaction lines (`father_attacks[].papa_en`), and finale dialogue (`finale.setup_en`, `daughter_entry_en`, `ending_papa_en`, `ending_daughter_en`). Finale typewriter lines fade their subtitle in once typing finishes.
 - User decision: only spoken dialogue is translated — titles/buttons (e.g. "Hero abhi haara nahi hai!", "Notebook abhi khaali hai.") stay Hinglish.

@@ -130,6 +130,9 @@ export interface ResumePower {
   source: string;
   achievement_type: string;
   fact: string;
+  /** Spotlight story split of `fact` (same CV fact) — read by both journeys. */
+  action: string | null;
+  impact: string | null;
   status: string;
   role: string;
 }

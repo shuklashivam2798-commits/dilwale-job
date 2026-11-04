@@ -645,6 +645,8 @@
       "source": "TCS",
       "achievement_type": "Achieved",
       "fact": "Raised pre-approved in-app loan offer conversion from 1.5% to 2.4% (+60% relative) by A/B testing placement and copy.",
+      "action": "A/B tested placement and copy for pre-approved in-app loan offers.",
+      "impact": "Loan offer conversion rose from 1.5% to 2.4% (+60% relative).",
       "status": "true_as_supplied_in_latest_cv",
       "role": "Display the achievement faithfully with its exact scope and outcome type."
     },
@@ -654,6 +656,8 @@
       "source": "TCS",
       "achievement_type": "Achieved",
       "fact": "Used 10% holdout groups to prove ₹12 Cr incremental annual card spend and retired 4 low-performing CRM campaigns.",
+      "action": "Used 10% holdout groups to measure CRM's incremental contribution, then retired 4 low-performing CRM campaigns based on the evidence.",
+      "impact": "Proved ₹12 Cr incremental annual card spend.",
       "status": "true_as_supplied_in_latest_cv",
       "role": "Display the achievement faithfully with its exact scope and outcome type."
     },
@@ -663,6 +667,8 @@
       "source": "TCS",
       "achievement_type": "Achieved",
       "fact": "Analyzed 50K under-30 customer records and 12 interviews; lifted Central Bank of India savings account openings 45%.",
+      "action": "Analyzed 50K under-30 customer records and 12 interviews to reposition savings accounts.",
+      "impact": "Lifted Central Bank of India savings account openings 45%.",
       "status": "true_as_supplied_in_latest_cv",
       "role": "Display the achievement faithfully with its exact scope and outcome type."
     },
@@ -672,6 +678,8 @@
       "source": "TCS",
       "achievement_type": "Achieved",
       "fact": "Orchestrated SME lending module launch across presales, delivery and account teams; added ₹40 Cr to pipeline in two quarters.",
+      "action": "Orchestrated the SME lending module launch across presales, delivery and account teams.",
+      "impact": "Added ₹40 Cr to pipeline in two quarters.",
       "status": "true_as_supplied_in_latest_cv",
       "role": "Display the achievement faithfully with its exact scope and outcome type."
     },
@@ -717,6 +725,8 @@
       "source": "HABER",
       "achievement_type": "Achieved",
       "fact": "Across 4 B2B campaigns AI-led CTR rose 2.27%→6.22%, and action-led copy reached 10.73% vs 7.01%.",
+      "action": "A/B tested search ad creative across 4 B2B campaigns.",
+      "impact": "AI-led CTR rose 2.27%→6.22%, and action-led copy reached 10.73% vs 7.01%.",
       "status": "true_as_supplied_in_latest_cv",
       "role": "Display the achievement faithfully with its exact scope and outcome type."
     },
@@ -762,6 +772,8 @@
       "source": "HABER",
       "achievement_type": "Analysis and strategy",
       "fact": "Found 92.7% brand-led organic traffic despite organic clicks +36.9% and impressions +40.4%; developed non-brand SEO strategy.",
+      "action": "Analyzed organic search discovery and developed a non-brand SEO strategy.",
+      "impact": "Found 92.7% brand-led organic traffic despite organic clicks +36.9% and impressions +40.4%.",
       "status": "true_as_supplied_in_latest_cv",
       "role": "Display the achievement faithfully with its exact scope and outcome type."
     },
@@ -780,6 +792,8 @@
       "source": "Parle Products",
       "achievement_type": "Research and strategy",
       "fact": "Audited 29 GT and MT outlets; observed 31% shelf absence and retailer choice behind two-thirds; higher SKU depth correlated with 10.25% vs 8.67% margins; developed four-lever GTM.",
+      "action": "Audited 29 GT and MT outlets and developed a four-lever GTM plan.",
+      "impact": "Observed 31% shelf absence with retailer choice behind two-thirds; higher SKU depth correlated with 10.25% vs 8.67% margins.",
       "status": "true_as_supplied_in_latest_cv",
       "role": "Display the achievement faithfully with its exact scope and outcome type."
     },
@@ -807,6 +821,8 @@
       "source": "Cart Recovery AI Agent — Target Corporation Project",
       "achievement_type": "Project built and tested",
       "fact": "Designed free-delivery-first margin-aware recovery agent; cut Claude Haiku calls 8→1; met fatigue, complaint-risk and margin gates in all 9 test runs.",
+      "action": "Designed a free-delivery-first, margin-aware recovery agent with enforced decision guardrails.",
+      "impact": "Cut Claude Haiku calls 8→1; met fatigue, complaint-risk and margin gates in all 9 test runs.",
       "status": "true_as_supplied_in_latest_cv",
       "role": "Display the achievement faithfully with its exact scope and outcome type."
     },
@@ -816,6 +832,8 @@
       "source": "ThinkQuota",
       "achievement_type": "Shipped MVP, modeled business case",
       "fact": "Shipped MVP in ~4 weeks with live AI, attempt gate, prompt budget and faculty dashboard; cut streak feature; modeled ₹1,200–₹2,000 pricing and 53–60% gross margin at ₹1,500; live demo earned pilot buying interest.",
+      "action": "Shipped the MVP with live AI, attempt gate, prompt budget and faculty dashboard; cut the streak feature to protect the core experience.",
+      "impact": "MVP shipped in ~4 weeks; live demo earned pilot buying interest; modeled ₹1,200–₹2,000 pricing and 53–60% gross margin at ₹1,500.",
       "status": "true_as_supplied_in_latest_cv",
       "role": "Display the achievement faithfully with its exact scope and outcome type."
     },

@@ -135,6 +135,9 @@ class ResumePower(BaseModel):
     source: str
     achievement_type: str
     fact: str
+    # Spotlight story split of `fact` (same CV fact, no new claims) — read by both journeys.
+    action: Optional[str] = None
+    impact: Optional[str] = None
     status: str
     role: str
 

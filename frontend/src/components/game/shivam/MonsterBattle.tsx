@@ -11,6 +11,7 @@ import { MonsterSilhouette, ShivamSprite, type MonsterKind } from "@/components/
 import { Sparkles } from "@/components/game/StageFx";
 import { ArenaFallback, ArenaNav, BackButton, SpotlightPanel, spotlightState } from "@/components/game/ArenaParts";
 import { SpotlightDialog } from "@/components/game/father/SpotlightDialog";
+import { SPOTLIGHT_COPY } from "@/lib/script";
 
 const CAST_MS = 900;
 const TINT: Record<string, string> = { growth: "text-amber-400", insight: "text-cyan-400", ownership: "text-violet-400" };
@@ -122,7 +123,7 @@ function MonsterArena({ engine, arena, progress, onBack }: MonsterArenaProps): R
       <SpotlightPanel
         arena={arena}
         state={spotlightState(progress.badges.includes(arena.badge), won)}
-        lockedHint="Play the strong strategy card to unlock the spotlight."
+        copy={SPOTLIGHT_COPY.shivam}
         footnote={won ? "Monster defeated · every card stays replayable." : "Weak cards cost a heart once each — then retry."}
         onOpen={openSpotlight}
       />
@@ -133,7 +134,14 @@ function MonsterArena({ engine, arena, progress, onBack }: MonsterArenaProps): R
         onBack={onBack}
         onFinale={finaleReady ? openFinale : undefined}
       />
-      <SpotlightDialog arena={arena} powers={powers} open={spotlightOpen} onOpenChange={setSpotlightOpen} onFinale={finaleReady ? openFinale : undefined} />
+      <SpotlightDialog
+        arena={arena}
+        powers={powers}
+        copy={SPOTLIGHT_COPY.shivam}
+        open={spotlightOpen}
+        onOpenChange={setSpotlightOpen}
+        onFinale={finaleReady ? openFinale : undefined}
+      />
     </main>
   );
 }
@@ -247,7 +255,7 @@ function MoveResult({ move, powers, onRetry }: { move: HeroMove; powers: ResumeP
               </span>
             ))}
           </div>
-          <p className="mt-3 text-sm text-emerald-100">Monster defeated! Open the Proof Spotlight below to earn the seal.</p>
+          <p className="mt-3 text-sm text-emerald-100">Monster defeated! Unlock the real-world story below to earn the seal.</p>
         </div>
       ) : (
         <Button onClick={onRetry} className="h-10 rounded-sm font-heading font-bold uppercase" data-testid="monster-retry-button">

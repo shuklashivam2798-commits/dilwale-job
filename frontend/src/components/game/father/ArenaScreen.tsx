@@ -3,7 +3,7 @@ import { motion, type TargetAndTransition, type Variants } from "motion/react";
 import { Flame, Swords } from "lucide-react";
 import type { AttackOutcome } from "@/lib/gameEngine";
 import { useGame } from "@/hooks/useGame";
-import { OUTCOME_COPY } from "@/lib/script";
+import { OUTCOME_COPY, SPOTLIGHT_COPY } from "@/lib/script";
 import type { Arena, FatherAttack, GameEngine, ResumePower } from "@/lib/types";
 import { useGameData } from "@/hooks/useGameData";
 import { cn } from "@/lib/utils";
@@ -87,7 +87,7 @@ function ArenaContent({ engine, arena, outcomes, badges, onBack }: ArenaContentP
       <SpotlightPanel
         arena={arena}
         state={spotlightState(badges.includes(arena.badge), resolvedCount > 0)}
-        lockedHint="Resolve at least one question attack to unlock the spotlight."
+        copy={SPOTLIGHT_COPY.father}
         footnote={`${resolvedCount}/${attacks.length} attacks answered here · every attack stays replayable.`}
         onOpen={openSpotlight}
       />
@@ -97,6 +97,7 @@ function ArenaContent({ engine, arena, outcomes, badges, onBack }: ArenaContentP
       <SpotlightDialog
         arena={arena}
         powers={spotlightPowers}
+        copy={SPOTLIGHT_COPY.father}
         open={spotlightOpen}
         onOpenChange={setSpotlightOpen}
         onFinale={finaleReady ? openFinale : undefined}

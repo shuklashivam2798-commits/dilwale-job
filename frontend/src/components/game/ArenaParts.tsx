@@ -1,5 +1,7 @@
 import type { ReactElement } from "react";
-import { ArrowLeft, ArrowRight, Award, Lock, Sparkles as SparklesIcon } from "lucide-react";
+import { ArrowLeft, ArrowRight, Award, FileSearch, Lock, LockOpen, Sparkles as SparklesIcon } from "lucide-react";
+import type { JourneyId } from "@/lib/gameEngine";
+import type { SpotlightCopy } from "@/lib/script";
 import type { Arena } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -13,44 +15,46 @@ export function spotlightState(sealEarned: boolean, unlocked: boolean): Spotligh
   return unlocked ? "unlocked" : "locked";
 }
 
-const SPOTLIGHT_UI: Record<SpotlightState, { panel: string; icon: ReactElement; button: string }> = {
-  locked: { panel: "border-violet-700/50 bg-panel/60", icon: <Lock className="size-8 shrink-0 text-violet-500" />, button: "Open Proof Spotlight" },
-  unlocked: {
-    panel: "border-gold/70 bg-panel",
-    icon: <SparklesIcon className="size-8 shrink-0 animate-twinkle text-gold" />,
-    button: "Open Proof Spotlight",
-  },
-  earned: { panel: "border-gold bg-gold/10", icon: <Award className="size-8 shrink-0 text-gold" />, button: "View Spotlight" },
+const SPOTLIGHT_UI: Record<SpotlightState, { panel: string; icon: ReactElement }> = {
+  locked: { panel: "border-violet-700/50 bg-panel/60", icon: <Lock className="size-8 shrink-0 text-violet-500" /> },
+  unlocked: { panel: "border-gold/70 bg-panel", icon: <SparklesIcon className="size-8 shrink-0 animate-twinkle text-gold" /> },
+  earned: { panel: "border-gold bg-gold/10", icon: <Award className="size-8 shrink-0 text-gold" /> },
+};
+
+const BUTTON_ICON: Record<JourneyId, ReactElement> = {
+  father: <FileSearch className="size-4" />,
+  shivam: <LockOpen className="size-4" />,
 };
 
 interface SpotlightPanelProps {
   arena: Arena;
   state: SpotlightState;
-  /** What unlocks the spotlight on this journey. */
-  lockedHint: string;
+  /** Journey framing: Papa's Proof Inspection or Shivam's Victory Debrief. */
+  copy: SpotlightCopy;
   footnote: string;
   onOpen: () => void;
 }
 
-export function SpotlightPanel({ arena, state, lockedHint, footnote, onOpen }: SpotlightPanelProps): ReactElement {
+export function SpotlightPanel({ arena, state, copy, footnote, onOpen }: SpotlightPanelProps): ReactElement {
   const ui = SPOTLIGHT_UI[state];
-  const status: Record<SpotlightState, string> = {
-    locked: lockedHint,
-    unlocked: "Spotlight unlocked. Open it to earn the seal.",
-    earned: `${arena.badge} earned — arena cleared!`,
-  };
   return (
     <section
       className={cn("mt-8 grid items-center gap-4 rounded-sm border-2 p-5 sm:grid-cols-[1fr_auto]", ui.panel)}
       data-testid="arena-spotlight-panel"
       data-state={state}
+      data-variant={copy.id}
     >
       <div className="flex items-start gap-3">
         {ui.icon}
         <div>
-          <p className="font-mono text-[10px] font-semibold uppercase tracking-widest text-gold">Proof Spotlight · {arena.badge}</p>
+          <p className="font-mono text-[10px] font-semibold uppercase tracking-widest text-gold" data-testid="arena-spotlight-kicker">
+            {copy.kicker} · {arena.badge}
+          </p>
           <p className="mt-1 font-heading text-lg font-bold text-white" data-testid="arena-spotlight-status">
-            {status[state]}
+            {copy.headline(arena, state)}
+          </p>
+          <p className="mt-0.5 text-sm text-violet-100" data-testid="arena-spotlight-detail">
+            {copy.detail(arena, state)}
           </p>
           <p className="mt-0.5 text-xs text-violet-300">{footnote}</p>
         </div>
@@ -61,7 +65,7 @@ export function SpotlightPanel({ arena, state, lockedHint, footnote, onOpen }: S
         className="h-11 rounded-sm px-5 font-heading font-bold uppercase shadow-[4px_4px_0_#7C2D12] disabled:shadow-none"
         data-testid="arena-open-spotlight-button"
       >
-        <SparklesIcon className="size-4" /> {ui.button}
+        {BUTTON_ICON[copy.id]} {copy.button(state)}
       </Button>
     </section>
   );

@@ -2,6 +2,8 @@
 // Lives in the bundle so the intro plays even when the backend is unavailable.
 import type { AttackOutcome, JourneyId, PapaStage } from "@/lib/gameEngine";
 import type { PapaMood } from "@/components/game/Sprites";
+import type { SpotlightState } from "@/components/game/ArenaParts";
+import type { Arena } from "@/lib/types";
 
 export type SceneId = "papa-resumes" | "hero-cross" | "thehro" | "demo";
 
@@ -81,12 +83,75 @@ export const JOURNEYS: Record<JourneyId, JourneyCopy> = {
     bullets: [
       "3 monster battles: Budget Beast, Invisible Audience, AI Fog King",
       "3 strategy cards per battle — one strong, two funny setbacks",
-      "Strong moves unlock proof spotlights and seals",
+      "Strong moves unlock real-world stories and seals",
     ],
   },
 };
 
 export const OTHER_JOURNEY: Record<JourneyId, JourneyId> = { father: "shivam", shivam: "father" };
+
+// ---- Arena spotlight copy: same feature + same Resume Power data, framed for the player's role ----
+export interface SpotlightCopy {
+  id: JourneyId;
+  kicker: string;
+  stageLabel: string;
+  headline: (arena: Arena, state: SpotlightState) => string;
+  detail: (arena: Arena, state: SpotlightState) => string;
+  button: (state: SpotlightState) => string;
+  title: (arena: Arena) => string;
+  description: (arena: Arena) => string;
+  challengeLabel: string;
+  itemLabel: string;
+  skillLabel: string | null;
+  actionLabel: string;
+  resultLabel: string;
+}
+
+const CLAIMS_HEADLINE = "Claims are easy. Where's the proof?";
+const DEBRIEF_LINE = "Discover how Shivam used these same skills to solve real-world growth challenges.";
+
+export const SPOTLIGHT_COPY: Record<JourneyId, SpotlightCopy> = {
+  father: {
+    id: "father",
+    kicker: "Papa's Proof Inspection",
+    stageLabel: "Arena",
+    headline: () => CLAIMS_HEADLINE,
+    detail: (arena, state) =>
+      ({
+        locked: "Resolve at least one question attack to unlock the inspection.",
+        unlocked: "Inspection unlocked. Inspect the evidence to earn the seal.",
+        earned: `${arena.badge} earned — arena cleared!`,
+      })[state],
+    button: () => "Inspect Shivam's Evidence",
+    title: () => CLAIMS_HEADLINE,
+    description: (arena) => `${arena.title} · ${arena.theme}`,
+    challengeLabel: "Challenge",
+    itemLabel: "Evidence",
+    skillLabel: null,
+    actionLabel: "Action",
+    resultLabel: "Measurable result",
+  },
+  shivam: {
+    id: "shivam",
+    kicker: "Victory Debrief",
+    stageLabel: "Battle",
+    headline: (arena, state) => (state === "locked" ? `${arena.monster} still stands.` : `${arena.monster} Defeated!`),
+    detail: (arena, state) =>
+      ({
+        locked: "Play the strong strategy card to unlock the real-world story.",
+        unlocked: DEBRIEF_LINE,
+        earned: `${arena.badge} earned — real-world story unlocked!`,
+      })[state],
+    button: (state) => (state === "earned" ? "View Real-World Story" : "Unlock Real-World Story"),
+    title: (arena) => `${arena.monster} Defeated!`,
+    description: () => DEBRIEF_LINE,
+    challengeLabel: "Real-world challenge",
+    itemLabel: "Achievement unlocked",
+    skillLabel: "Skill activated",
+    actionLabel: "Action he took",
+    resultLabel: "Measurable impact",
+  },
+};
 
 // ---- Father's Journey flavour copy (Papa's personality only — never CV facts) ----
 export const PAPA_STAGE_COPY: Record<PapaStage, { label: string; line: string; subtitle: string; mood: PapaMood }> = {

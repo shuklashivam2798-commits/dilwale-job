@@ -20,8 +20,8 @@ const ARENA_TINT: Record<string, string> = {
 const ARENA_OFFSET = ["md:mt-0", "md:mt-14", "md:mt-6"];
 
 const CHAPTER_NOTE: Record<JourneyId, string> = {
-  father: "Pick any arena. Resolve at least one question attack, then open its Proof Spotlight to earn the seal. Progress is saved on this device.",
-  shivam: "Pick any monster. Weak strategy cards cost a heart once each and let you retry; the strong card unlocks the Proof Spotlight and seal.",
+  father: "Pick any arena. Resolve at least one question attack, then inspect Shivam's evidence in Papa's Proof Inspection to earn the seal. Progress is saved on this device.",
+  shivam: "Pick any monster. Weak strategy cards cost a heart once each and let you retry; the strong card unlocks the Victory Debrief and seal.",
 };
 
 // Static motion configs.
@@ -326,7 +326,7 @@ function FinaleTeaser({ spotlights, shortlisted, onOpen }: { spotlights: number;
             ? shortlisted
               ? "Rishta shortlisted! Replay the finale or try a different first audience anytime."
               : "All three proof seals earned! Miss Growth is ready with her surprise challenge."
-            : "Unlocks after all three proof spotlights. Papa may test the past — but the final decision is hers."}
+            : "Unlocks after all three arena seals. Papa may test the past — but the final decision is hers."}
         </p>
       </div>
       <div className="flex flex-col items-start gap-3 sm:items-end">
