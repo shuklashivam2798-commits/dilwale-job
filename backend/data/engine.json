@@ -55,6 +55,11 @@
           "reaction": "The monster shrugs. CTR does not prove revenue or customer retention.",
           "learning": "Connect creative performance to qualified outcomes."
         }
+      ],
+      "spotlight_powers": [
+        "P01",
+        "P02",
+        "P09"
       ]
     },
     {
@@ -91,6 +96,11 @@
           "reaction": "The monster points at the calendar. Targets are not realized results.",
           "learning": "Separate baseline, forecast, test and measured outcome."
         }
+      ],
+      "spotlight_powers": [
+        "P03",
+        "P16",
+        "P14"
       ]
     },
     {
@@ -127,6 +137,11 @@
           "reaction": "The monster laughs. Lab tests do not establish production revenue.",
           "learning": "Run a holdout and measure incremental outcomes when deployed."
         }
+      ],
+      "spotlight_powers": [
+        "P20",
+        "P19",
+        "P04"
       ]
     }
   ],
@@ -145,7 +160,43 @@
       "learning": "For the next experiment, track qualified outcomes beyond the initial offer conversion.",
       "papa": "Wah beta! Percent aur percentage point ka chakkar bhi clear hai. Counterattack successful!",
       "source": "Latest CV — TCS loan-offer conversion bullet",
-      "supporting_material_suggestion": "Optional proof drawer: original test setup and metric breakdown"
+      "supporting_material_suggestion": "Optional proof drawer: original test setup and metric breakdown",
+      "proof": {
+        "contribution": "At TCS, I A/B tested placement and copy for pre-approved in-app loan offers.",
+        "decisions": [
+          "Changed how and where the offer appeared — placement and copy",
+          "Used conversion performance to judge the test"
+        ],
+        "metrics": [
+          {
+            "label": "Conversion before",
+            "value": "1.5%"
+          },
+          {
+            "label": "Conversion after",
+            "value": "2.4%"
+          },
+          {
+            "label": "Absolute change",
+            "value": "+0.9 percentage points"
+          },
+          {
+            "label": "Relative lift",
+            "value": "+60%"
+          }
+        ],
+        "related_powers": [
+          "P01"
+        ],
+        "supports": [
+          "Loan-offer conversion rose from 1.5% to 2.4% through placement and copy A/B testing"
+        ],
+        "not_claimed": [
+          "Not a 60-percentage-point jump — the 60% is a relative increase",
+          "Specific to the tested loan offer, not every banking product"
+        ],
+        "transferable": []
+      }
     },
     {
       "id": "G2",
@@ -161,7 +212,38 @@
       "learning": "Continue testing long-term lift and profitability before scaling further.",
       "papa": "Control group bhi? Yeh toh asli marketing science ka jaadu hai!",
       "source": "Latest CV — TCS CRM incremental spend bullet",
-      "supporting_material_suggestion": "Optional: show a relevant CV/project extract if available"
+      "supporting_material_suggestion": "Optional: show a relevant CV/project extract if available",
+      "proof": {
+        "contribution": "At TCS, I used 10% holdout groups to measure the incremental contribution of CRM.",
+        "decisions": [
+          "Used 10% holdout groups as the basis for incrementality measurement",
+          "Retired four low-performing campaigns based on the evidence"
+        ],
+        "metrics": [
+          {
+            "label": "CRM holdout groups",
+            "value": "10%"
+          },
+          {
+            "label": "Incremental annual card spend",
+            "value": "₹12 Cr"
+          },
+          {
+            "label": "Low-performing campaigns retired",
+            "value": "4"
+          }
+        ],
+        "related_powers": [
+          "P02"
+        ],
+        "supports": [
+          "CRM drove ₹12 Cr in incremental annual card spend, measured against holdout groups"
+        ],
+        "not_claimed": [
+          "Incremental card spend is not the same metric as profit or bank revenue"
+        ],
+        "transferable": []
+      }
     },
     {
       "id": "G3",
@@ -177,7 +259,23 @@
       "learning": "Shivam noted it down: shortlist 10 relevant creators, test voice-workflow demos, measure activated users, D7 retention and cost per retained user before scaling.",
       "papa": "Ek heart gaya! Lekin beta ne sawal notebook mein likh liya.",
       "source": "No direct corresponding bullet in latest CV",
-      "supporting_material_suggestion": "Optional: show a relevant CV/project extract if available"
+      "supporting_material_suggestion": "Optional: show a relevant CV/project extract if available",
+      "proof": {
+        "contribution": null,
+        "decisions": [],
+        "metrics": [],
+        "related_powers": [],
+        "supports": [],
+        "not_claimed": [
+          "No directly matching nationwide creator-growth program appears in the supplied CV"
+        ],
+        "transferable": [
+          "Marketing experiments",
+          "Positioning",
+          "Campaign measurement",
+          "User research"
+        ]
+      }
     },
     {
       "id": "I1",
@@ -193,7 +291,38 @@
       "learning": "Keep connecting qualitative motivations with behavior and measured results.",
       "papa": "Pehle logon ko samjha, phir positioning badli. Papa impressed!",
       "source": "Latest CV — TCS Central Bank savings account bullet",
-      "supporting_material_suggestion": "Optional: show a relevant CV/project extract if available"
+      "supporting_material_suggestion": "Optional: show a relevant CV/project extract if available",
+      "proof": {
+        "contribution": "At TCS, I analyzed data on 50,000 customers under age 30 and conducted 12 interviews.",
+        "decisions": [
+          "Combined customer data with 12 customer interviews",
+          "Used those insights to inform the repositioning of Central Bank of India savings accounts"
+        ],
+        "metrics": [
+          {
+            "label": "Under-30 customer records analyzed",
+            "value": "50K"
+          },
+          {
+            "label": "Customer interviews",
+            "value": "12"
+          },
+          {
+            "label": "Savings account openings",
+            "value": "+45%"
+          }
+        ],
+        "related_powers": [
+          "P03"
+        ],
+        "supports": [
+          "The repositioning lifted Central Bank of India savings account openings by 45%"
+        ],
+        "not_claimed": [
+          "Refers to the savings account-opening initiative, not growth across the bank's entire customer base"
+        ],
+        "transferable": []
+      }
     },
     {
       "id": "I2",
@@ -209,7 +338,43 @@
       "learning": "Validate the retailer-insight pattern in additional stores before broader rollout.",
       "papa": "Bas Excel mein nahi, dukaan mein bhi research ki! Bahut badhiya.",
       "source": "Latest CV — Parle bullets 1–3",
-      "supporting_material_suggestion": "Optional: show a relevant CV/project extract if available"
+      "supporting_material_suggestion": "Optional: show a relevant CV/project extract if available",
+      "proof": {
+        "contribution": "In my Parle-G field-sales and GTM project, I audited 29 GT and MT outlets and assessed assortment and POSM.",
+        "decisions": [
+          "Investigated on the ground: outlet audits of assortment and POSM",
+          "Separated retailer choice from stockouts as the cause of shelf absence",
+          "Developed a four-lever GTM plan"
+        ],
+        "metrics": [
+          {
+            "label": "GT/MT outlets audited",
+            "value": "29"
+          },
+          {
+            "label": "Observed shelves lacking Parle-G",
+            "value": "31%"
+          },
+          {
+            "label": "Absences due to retailer choice",
+            "value": "~2/3"
+          },
+          {
+            "label": "Margin: 5+ packs vs single-pack",
+            "value": "10.25% vs 8.67%"
+          }
+        ],
+        "related_powers": [
+          "P16"
+        ],
+        "supports": [
+          "Firsthand research across 29 audited outlets, plus a four-lever GTM plan"
+        ],
+        "not_claimed": [
+          "The four-lever plan is a proposed strategy, not a claimed nationwide realized sales result"
+        ],
+        "transferable": []
+      }
     },
     {
       "id": "I3",
@@ -225,7 +390,22 @@
       "learning": "Shivam noted it down: interview trial users and non-users across multiple segments, map triggers and existing workarounds, then compare findings against activation and repeat usage.",
       "papa": "Good. Customer se pooche bina unka answer assume nahi karna chahiye.",
       "source": "No Wispr Flow user interview accomplishment listed in latest CV",
-      "supporting_material_suggestion": "Optional: show a relevant CV/project extract if available"
+      "supporting_material_suggestion": "Optional: show a relevant CV/project extract if available",
+      "proof": {
+        "contribution": null,
+        "decisions": [],
+        "metrics": [],
+        "related_powers": [],
+        "supports": [],
+        "not_claimed": [
+          "The latest CV does not identify a completed Wispr Flow-specific user research study"
+        ],
+        "transferable": [
+          "Customer research",
+          "Analytics",
+          "Interviewing users and non-users around triggering moments, alternatives and repeated behavior"
+        ]
+      }
     },
     {
       "id": "O1",
@@ -241,7 +421,41 @@
       "learning": "Keep testing real user activation after shipping and broaden edge-case coverage.",
       "papa": "Ek taraf MVP ship kiya, doosri taraf AI cost kam ki. Yeh hui na ownership!",
       "source": "Latest CV — ThinkQuota and Cart Recovery AI Agent bullets",
-      "supporting_material_suggestion": "Optional: show a relevant CV/project extract if available"
+      "supporting_material_suggestion": "Optional: show a relevant CV/project extract if available",
+      "proof": {
+        "contribution": "I scoped and shipped the ThinkQuota MVP, and built enforced decision guardrails in the Cart Recovery AI Agent project.",
+        "decisions": [
+          "Shipped live AI, an attempt gate, prompt budget and faculty dashboard",
+          "Deliberately cut a streak feature to protect the core experience",
+          "Built enforced decision guardrails: fatigue, complaint-risk and margin gates"
+        ],
+        "metrics": [
+          {
+            "label": "ThinkQuota MVP shipped in",
+            "value": "~4 weeks"
+          },
+          {
+            "label": "AI calls per decision",
+            "value": "8 → 1"
+          },
+          {
+            "label": "Workflow gates met",
+            "value": "All 9 test scenarios"
+          }
+        ],
+        "related_powers": [
+          "P20",
+          "P19"
+        ],
+        "supports": [
+          "A shipped MVP in about four weeks, and an AI agent that met all workflow gates across 9 tests"
+        ],
+        "not_claimed": [
+          "The AI Agent results refer to the project's nine test scenarios, not an asserted production rollout",
+          "ThinkQuota's pilot economics are modeled separately from the MVP shipping result"
+        ],
+        "transferable": []
+      }
     },
     {
       "id": "O2",
@@ -257,7 +471,45 @@
       "learning": "Track pipeline stage progression and realized value alongside growth of the initial opportunity pipeline.",
       "papa": "Samajh gaya! Pipeline ki value ko revenue nahi bana diya. Imaandaar aur commercially sharp.",
       "source": "Latest CV — TCS SME module and MMM bullets",
-      "supporting_material_suggestion": "Optional: show a relevant CV/project extract if available"
+      "supporting_material_suggestion": "Optional: show a relevant CV/project extract if available",
+      "proof": {
+        "contribution": "At TCS, I orchestrated an SME lending module launch across presales, delivery and account teams.",
+        "decisions": [
+          "Orchestrated the launch across presales, delivery and account teams",
+          "Helped guide a ₹10 Cr budget shift using a marketing mix model"
+        ],
+        "metrics": [
+          {
+            "label": "SME lending pipeline added",
+            "value": "₹40 Cr in 2 quarters"
+          },
+          {
+            "label": "MMM data",
+            "value": "3 years · 7 channels"
+          },
+          {
+            "label": "Budget shift guided",
+            "value": "₹10 Cr"
+          },
+          {
+            "label": "Return on spend",
+            "value": "+12%"
+          }
+        ],
+        "related_powers": [
+          "P04",
+          "P07"
+        ],
+        "supports": [
+          "₹40 Cr added to the SME lending pipeline over two quarters — a real pipeline result",
+          "A ₹10 Cr budget shift guided by MMM, improving return on spend by 12%"
+        ],
+        "not_claimed": [
+          "It does not mean ₹40 Cr was booked as bank revenue or disbursed as loans",
+          "Pipeline, disbursed principal, profit and revenue are different measures"
+        ],
+        "transferable": []
+      }
     },
     {
       "id": "O3",
@@ -273,7 +525,23 @@
       "learning": "Shivam noted it down: pick one high-intent segment, define first-value activation, run cohort retention tests, then scale the acquisition channels that generate retained users.",
       "papa": "Ek dil aur gaya, par sapna nahi. Infinite Learner mode activated!",
       "source": "No matching 0-to-1M consumer AI scale-up listed in latest CV",
-      "supporting_material_suggestion": "Optional: show a relevant CV/project extract if available"
+      "supporting_material_suggestion": "Optional: show a relevant CV/project extract if available",
+      "proof": {
+        "contribution": null,
+        "decisions": [],
+        "metrics": [],
+        "related_powers": [],
+        "supports": [],
+        "not_claimed": [
+          "The current CV does not list a personally owned launch-to-one-million-active-users case"
+        ],
+        "transferable": [
+          "Product shipping",
+          "Conversion improvement",
+          "Customer research",
+          "Marketing analytics"
+        ]
+      }
     }
   ],
   "finale": {

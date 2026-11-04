@@ -32,6 +32,24 @@ class Arena(BaseModel):
     badge: str
     hero_problem: str
     hero_moves: list[HeroMove]
+    spotlight_powers: list[str] = []  # vault ids backing core_proof (curated link, no new facts)
+
+
+class ProofMetric(BaseModel):
+    label: str
+    value: str
+
+
+class AttackProof(BaseModel):
+    """'Show Me Proof' breakdown — every line is lifted from the attack's answer/evidence/limitation."""
+
+    contribution: Optional[str] = None
+    decisions: list[str] = []
+    metrics: list[ProofMetric] = []
+    related_powers: list[str] = []
+    supports: list[str] = []
+    not_claimed: list[str] = []
+    transferable: list[str] = []
 
 
 class FatherAttack(BaseModel):
@@ -49,6 +67,7 @@ class FatherAttack(BaseModel):
     papa: str
     source: str
     supporting_material_suggestion: str
+    proof: AttackProof = AttackProof()
 
 
 class FinaleChoice(BaseModel):

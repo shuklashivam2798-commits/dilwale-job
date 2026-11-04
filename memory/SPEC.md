@@ -15,14 +15,24 @@ Characters: **Shivam** (hero/candidate), **Recruiter Papa** (skeptical father), 
 - Do NOT show the 4 optional origin/cast intro cards anywhere — the recruiter experience must start fast; Shivam's story is discovered through gameplay. (`optional_origin_cards` stays in the API data only.)
 - Build order: foundation (done) → Father's Arenas → Monster Battles → Miss Growth's Finale, one step at a time.
 
+## Phase 2 — Father's Journey (built, fully playable)
+- Hub → "Enter Arena" (all 3 arenas open, any order) → ArenaScreen: situation, Papa Mood Meter, 3 attack cards (Launch / Replay Attack).
+- AttackBattle (full-screen overlay): Papa (angry) types the exact JSON question → "?" projectile hits Shivam → "Scanning Shivam's Resume Powers..." sweeps all 21 vault tiles → locks on `proof.related_powers` (or none) → result. "Skip to answer" jumps straight to result.
+- Result: Proven = "Shivam used Resume Raksha!" + "Shivam used [power] from his resume!" + answer + Actual achievement (evidence). Partial (O2) = same + "What this experience proves" vs "What it does not mean". Learning (G3, I3, O3) = "Resume Power Not Found" + limitation + honest transferable skills + Infinite Learner plan (JSON `learning`). Papa reaction = exact JSON `papa` line + face change.
+- Buttons: Show Me Proof (personal contribution, key decisions, metric tiles, matching vault cards, source), Not Convinced Yet (precise boundary, supports/not-claimed, next experiment), Continue (back to arena).
+- Arena completion: ≥1 attack resolved unlocks Proof Spotlight (arena `core_proof` + `spotlight_powers` vault cards); opening it earns the seal (Experimentation/Insight/Ownership). 3 seals → finale teaser says unlocked for next chapter.
+- Papa mood: points proven 2 / partial 2 / learning 1 (max 15). Stages skeptical (0+), curious (2+), warming (6+), impressed (11+). PapaSprite moods: skeptical, angry, curious, pleased, impressed.
+- HEARTS ARE NOT DEDUCTED YET (user deferred heart system + Learning Journal to the next phase). Learning outcomes are stored in `progress.father.attackOutcomes` ready for that phase (then dispatch LOSE_HEART with the JSON learning text).
+- `backend/data/engine.json` = user's JSON + derived fields only: `father_attacks[].proof` {contribution, decisions, metrics, related_powers, supports, not_claimed, transferable} (every line lifted from that attack's answer/evidence/limitation) and `arenas[].spotlight_powers`. Original untouched in memory/source/engine.json.
+
 ## Planned next steps (NOT built yet)
-Father arenas (9 question attacks, Scanning Resume Powers, Proven/Partial/Learning, Show Me Proof / Not Convinced Yet / Continue, spotlights), Shivam monster battles (hero_moves, setbacks, retry, seals), Miss Growth finale (3 audience choices, RISHTA SHORTLISTED + fictional disclaimer), Behind the Build voice slots, personal links.
+Infinite Learner heart loss + Learning Journal entries for the Father learning outcomes, Shivam monster battles (hero_moves, setbacks, retry, seals), Miss Growth finale (3 audience choices, RISHTA SHORTLISTED + fictional disclaimer), Behind the Build voice slots, personal links.
 
 ## Architecture
 - Backend: `GET /api/game` (full GameEngine), `GET /api/game/attacks/{id}` (404 if unknown), `GET /api/game/arenas/{id}`, `GET /api/game/powers`. Models `backend/models/game.py` ↔ TS `frontend/src/lib/types.ts`. No DB use, no auth.
 - `personal_links` in engine.json hold placeholders; backend returns `null` for anything not an http(s) URL → UI hides the buttons. Edit engine.json to add real URLs.
 - Game state: pure reducer `frontend/src/lib/gameEngine.ts`; persisted by `lib/storage.ts` to localStorage key `dilwale-job-le-jayenge:v1`, in-memory fallback if storage unavailable. Provider `lib/game-store.tsx`.
-- State: `phase` (title|intro|select|journey), `journey`, `introSeen`, `muted`, `progress.{father,shivam}` each with hearts (start 3), heartLossKeys (dedupe — same key never costs twice), resolvedKeys, spotlightsViewed, badges, journal[], comebacks, comebackPending, finaleChoice.
+- State: `phase` (title|intro|select|journey), `journey`, `activeArena`, `introSeen`, `muted`, `progress.{father,shivam}` each with hearts (start 3), heartLossKeys (dedupe — same key never costs twice), resolvedKeys, attackOutcomes{id→proven|partial|learning}, spotlightsViewed, badges, journal[], comebacks, comebackPending, finaleChoice.
 - Single route `*` → `pages/Game.tsx`; screens are phases (survive refresh).
 
 ## Auth

@@ -88,15 +88,32 @@ export function ShivamSprite({ className, animated = true, ...rest }: SpriteProp
   );
 }
 
-export function PapaSprite({ className, animated = true, ...rest }: SpriteProps) {
+export type PapaMood = "skeptical" | "angry" | "curious" | "pleased" | "impressed";
+
+interface PapaSpriteProps extends SpriteProps {
+  mood?: PapaMood;
+}
+
+const PAPA_LABEL: Record<PapaMood, string> = {
+  skeptical: "Recruiter Papa, pointing sternly, holding a stack of resumes",
+  angry: "Recruiter Papa, furious, launching a question attack",
+  curious: "Recruiter Papa, one eyebrow raised, curious",
+  pleased: "Recruiter Papa, warming up with a small smile",
+  impressed: "Recruiter Papa, beaming with a thumbs up, impressed",
+};
+
+export function PapaSprite({ className, animated = true, mood = "skeptical", ...rest }: PapaSpriteProps) {
   const id = useSvgId();
+  const face = mood === "angry" ? "#F0A08A" : "#E8B298";
+  const pointing = mood === "skeptical" || mood === "angry";
   return (
     <svg
       viewBox="0 0 120 180"
       role="img"
-      aria-label="Recruiter Papa, pointing sternly, holding a stack of resumes"
+      aria-label={PAPA_LABEL[mood]}
       className={cn("overflow-visible", animated && "animate-idle-bob", className)}
       data-testid={rest["data-testid"]}
+      data-mood={mood}
     >
       <defs>
         <linearGradient id={`${id}c`} x1="0" x2="0" y1="0" y2="1">
@@ -128,30 +145,100 @@ export function PapaSprite({ className, animated = true, ...rest }: SpriteProps)
         <rect x="11" y="106" width="18" height="6" fill="none" stroke="#DC2626" strokeWidth="1.5" transform="rotate(-10 20 109)" />
       </g>
       <circle cx="28" cy="104" r="5" fill="#E8B298" />
-      {/* pointing arm */}
-      <g className={animated ? "animate-finger-wag" : undefined} style={{ transformOrigin: "84px 78px" }}>
-        <path d="M80 74 L96 44 L105 48 L90 82 Z" fill="#9D174D" />
-        <circle cx="100" cy="42" r="5.5" fill="#E8B298" />
-        <rect x="98" y="26" width="4.5" height="14" rx="2.2" fill="#E8B298" />
-      </g>
+      {/* right arm: pointing (skeptical/angry), at side (curious/pleased), thumbs up (impressed) */}
+      {pointing && (
+        <g
+          className={animated ? "animate-finger-wag" : undefined}
+          style={{ transformOrigin: "84px 78px", animationDuration: mood === "angry" ? "0.45s" : undefined }}
+        >
+          <path d="M80 74 L96 44 L105 48 L90 82 Z" fill="#9D174D" />
+          <circle cx="100" cy="42" r="5.5" fill="#E8B298" />
+          <rect x="98" y="26" width="4.5" height="14" rx="2.2" fill="#E8B298" />
+        </g>
+      )}
+      {(mood === "curious" || mood === "pleased") && (
+        <g>
+          <path d="M82 76 L95 102 L87 107 L74 84 Z" fill="#9D174D" />
+          <circle cx="92" cy="106" r="5" fill="#E8B298" />
+        </g>
+      )}
+      {mood === "impressed" && (
+        <g>
+          <path d="M80 74 L96 46 L105 50 L90 82 Z" fill="#9D174D" />
+          <rect x="94" y="37" width="12" height="10" rx="3" fill="#E8B298" />
+          <rect x="95.5" y="27" width="4.8" height="12" rx="2.3" fill="#E8B298" />
+          <path d="M108 22 l2 4 l4 1 l-4 1 l-2 4 l-2 -4 l-4 -1 l4 -1 Z" fill="#FDE047" />
+          <path d="M22 30 l1.5 3 l3 1 l-3 1 l-1.5 3 l-1.5 -3 l-3 -1 l3 -1 Z" fill="#FDE047" />
+        </g>
+      )}
       {/* head */}
       <rect x="54" y="58" width="12" height="8" fill="#CD8E70" />
-      <rect x="42" y="22" width="36" height="42" rx="14" fill="#E8B298" />
+      <rect x="42" y="22" width="36" height="42" rx="14" fill={face} />
       <path d="M42 46 C38 30 42 24 47 24 L47 44 Z" fill="#6B7280" />
       <path d="M78 46 C82 30 78 24 73 24 L73 44 Z" fill="#6B7280" />
       <ellipse cx="60" cy="26" rx="10" ry="3" fill="#FFF" opacity="0.25" />
       <rect x="58.8" y="29" width="2.4" height="7" rx="1" fill="#DC2626" />
-      {/* stern brows + round glasses */}
-      <path d="M46 37 L57 41" stroke="#4B5563" strokeWidth="3.6" strokeLinecap="round" />
-      <path d="M74 37 L63 41" stroke="#4B5563" strokeWidth="3.6" strokeLinecap="round" />
+      {mood === "angry" && <path d="M71 27 l5 5 M76 27 l-5 5" stroke="#DC2626" strokeWidth="1.8" strokeLinecap="round" />}
+      {/* brows */}
+      {mood === "skeptical" && (
+        <>
+          <path d="M46 37 L57 41" stroke="#4B5563" strokeWidth="3.6" strokeLinecap="round" />
+          <path d="M74 37 L63 41" stroke="#4B5563" strokeWidth="3.6" strokeLinecap="round" />
+        </>
+      )}
+      {mood === "angry" && (
+        <>
+          <path d="M45 34 L58 42" stroke="#374151" strokeWidth="4" strokeLinecap="round" />
+          <path d="M75 34 L62 42" stroke="#374151" strokeWidth="4" strokeLinecap="round" />
+        </>
+      )}
+      {mood === "curious" && (
+        <>
+          <path d="M46 37 Q51 32 57 36" stroke="#4B5563" strokeWidth="3.4" fill="none" strokeLinecap="round" />
+          <path d="M63 40 L74 40" stroke="#4B5563" strokeWidth="3.4" strokeLinecap="round" />
+        </>
+      )}
+      {(mood === "pleased" || mood === "impressed") && (
+        <>
+          <path d="M46 38 Q51 34 57 37" stroke="#4B5563" strokeWidth="3.2" fill="none" strokeLinecap="round" />
+          <path d="M63 37 Q69 34 74 38" stroke="#4B5563" strokeWidth="3.2" fill="none" strokeLinecap="round" />
+        </>
+      )}
+      {/* round glasses + eyes */}
       <circle cx="53" cy="46" r="5.5" fill="#FFF" fillOpacity="0.15" stroke="#D1D5DB" strokeWidth="1.6" />
       <circle cx="67" cy="46" r="5.5" fill="#FFF" fillOpacity="0.15" stroke="#D1D5DB" strokeWidth="1.6" />
       <path d="M58.5 46 L61.5 46" stroke="#D1D5DB" strokeWidth="1.6" />
-      <rect x="51.5" y="45" width="3" height="3" fill="#1F2937" />
-      <rect x="65.5" y="45" width="3" height="3" fill="#1F2937" />
+      {mood === "impressed" ? (
+        <>
+          <path d="M50.5 47.5 Q53 44 55.5 47.5" stroke="#1F2937" strokeWidth="1.6" fill="none" />
+          <path d="M64.5 47.5 Q67 44 69.5 47.5" stroke="#1F2937" strokeWidth="1.6" fill="none" />
+        </>
+      ) : (
+        <>
+          <rect x="51.5" y={mood === "curious" ? 44 : 45} width="3" height={mood === "angry" ? 2 : 3} fill="#1F2937" />
+          <rect x="65.5" y="45" width="3" height={mood === "angry" ? 2 : 3} fill="#1F2937" />
+        </>
+      )}
+      {(mood === "pleased" || mood === "impressed") && (
+        <>
+          <circle cx="48" cy="53" r="2.5" fill="#F472B6" opacity="0.45" />
+          <circle cx="72" cy="53" r="2.5" fill="#F472B6" opacity="0.45" />
+        </>
+      )}
       {/* the mustache of judgement */}
-      <path d="M45 56 Q52 49 60 54.5 Q68 49 75 56 Q70 59.5 60 57.5 Q50 59.5 45 56 Z" fill="#6B7280" />
-      <path d="M55 62 Q60 59.5 65 62" stroke="#7C2D12" strokeWidth="1.6" fill="none" strokeLinecap="round" />
+      <path
+        d={
+          mood === "impressed" || mood === "pleased"
+            ? "M45 54 Q52 49 60 53.5 Q68 49 75 54 Q70 58 60 56.5 Q50 58 45 54 Z"
+            : "M45 56 Q52 49 60 54.5 Q68 49 75 56 Q70 59.5 60 57.5 Q50 59.5 45 56 Z"
+        }
+        fill="#6B7280"
+      />
+      {mood === "skeptical" && <path d="M55 62 Q60 59.5 65 62" stroke="#7C2D12" strokeWidth="1.6" fill="none" strokeLinecap="round" />}
+      {mood === "angry" && <ellipse cx="60" cy="61.5" rx="4" ry="2.6" fill="#7C2D12" />}
+      {mood === "curious" && <path d="M56 61.5 L64 61" stroke="#7C2D12" strokeWidth="1.6" strokeLinecap="round" />}
+      {mood === "pleased" && <path d="M55 59.5 Q60 62.5 65 59.5" stroke="#7C2D12" strokeWidth="1.6" fill="none" strokeLinecap="round" />}
+      {mood === "impressed" && <path d="M53.5 58.5 Q60 65 66.5 58.5 Z" fill="#7C2D12" />}
     </svg>
   );
 }

@@ -1,6 +1,7 @@
 // Static story copy for the opening cinematic + journey select (from the master spec §2/§3).
 // Lives in the bundle so the intro plays even when the backend is unavailable.
-import type { JourneyId } from "@/lib/gameEngine";
+import type { AttackOutcome, JourneyId, PapaStage } from "@/lib/gameEngine";
+import type { PapaMood } from "@/components/game/Sprites";
 
 export type SceneId = "papa-resumes" | "hero-cross" | "thehro" | "demo";
 
@@ -86,3 +87,24 @@ export const JOURNEYS: Record<JourneyId, JourneyCopy> = {
 };
 
 export const OTHER_JOURNEY: Record<JourneyId, JourneyId> = { father: "shivam", shivam: "father" };
+
+// ---- Father's Journey flavour copy (Papa's personality only — never CV facts) ----
+export const PAPA_STAGE_COPY: Record<PapaStage, { label: string; line: string; mood: PapaMood }> = {
+  skeptical: { label: "Skeptical", line: "Resume toh sab ke paas hota hai, beta. Proof kahan hai?", mood: "skeptical" },
+  curious: { label: "Curious", line: "Hmm… ladka kuch toh jaanta hai.", mood: "curious" },
+  warming: { label: "Warming Up", line: "Accha! Har jawaab ke saath number aur scope bhi?", mood: "pleased" },
+  impressed: { label: "Impressed", line: "Beta, ab toh Papa bhi fan ho gaye!", mood: "impressed" },
+};
+
+/** Papa's face while delivering his JSON reaction line, per outcome. */
+export const REACTION_MOOD: Record<AttackOutcome, PapaMood> = {
+  proven: "impressed",
+  partial: "impressed",
+  learning: "curious",
+};
+
+export const OUTCOME_COPY: Record<AttackOutcome, { label: string; chip: string; tone: string }> = {
+  proven: { label: "Proven", chip: "Full defense · no heart lost", tone: "border-emerald-400 bg-emerald-950 text-emerald-300" },
+  partial: { label: "Partial", chip: "Real power, narrower claim · no heart lost", tone: "border-amber-400 bg-amber-950 text-amber-300" },
+  learning: { label: "Learning", chip: "Gap logged for the Infinite Learner", tone: "border-rose-400 bg-rose-950 text-rose-300" },
+};

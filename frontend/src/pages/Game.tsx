@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { GameProvider, useGame } from "@/lib/game-store";
 import { Cinematic } from "@/components/game/Cinematic";
+import { ArenaScreen } from "@/components/game/father/ArenaScreen";
 import { ComebackDialog, RestartDialog, type RestartScope } from "@/components/game/GameDialogs";
 import { Hud } from "@/components/game/Hud";
 import { JournalDrawer } from "@/components/game/JournalDrawer";
@@ -26,7 +27,7 @@ function GameShell() {
   // Every screen / journey change starts at the top of the page.
   useEffect(() => {
     window.scrollTo({ top: 0 });
-  }, [state.phase, state.journey]);
+  }, [state.phase, state.journey, state.activeArena]);
 
   if (state.phase === "title") return <TitleScreen />;
   if (state.phase === "intro") return <Cinematic />;
@@ -40,7 +41,13 @@ function GameShell() {
       <div aria-hidden className="scanlines pointer-events-none fixed inset-0" />
       <Hud onOpenVault={() => setVaultOpen(true)} onOpenJournal={() => setJournalOpen(true)} onRestart={setRestart} />
       <div className="relative">
-        {state.phase === "select" ? <JourneySelect /> : <JourneyHub onRestart={setRestart} />}
+        {state.phase === "select" ? (
+          <JourneySelect />
+        ) : state.journey === "father" && state.activeArena ? (
+          <ArenaScreen />
+        ) : (
+          <JourneyHub onRestart={setRestart} />
+        )}
       </div>
       <VaultDrawer open={vaultOpen} onOpenChange={setVaultOpen} />
       <JournalDrawer open={journalOpen} onOpenChange={setJournalOpen} />

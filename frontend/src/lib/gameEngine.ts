@@ -7,6 +7,7 @@
 
 export type JourneyId = "father" | "shivam";
 export type Phase = "title" | "intro" | "select" | "journey";
+export type AttackOutcome = "proven" | "partial" | "learning";
 
 export const STARTING_HEARTS = 3;
 export const STATE_VERSION = 1;
@@ -24,6 +25,9 @@ export interface JourneyProgress {
   /** Keys that already cost a heart — a repeated attack/move can never drain another. */
   heartLossKeys: string[];
   resolvedKeys: string[];
+  /** Father's Journey: deterministic outcome per resolved attack id. Learning outcomes are
+   *  kept here, ready for the Infinite Learner heart/journal phase. */
+  attackOutcomes: Record<string, AttackOutcome>;
   spotlightsViewed: string[];
   badges: string[];
   journal: JournalEntry[];
@@ -36,6 +40,8 @@ export interface GameState {
   version: number;
   phase: Phase;
   journey: JourneyId | null;
+  /** Arena currently open inside the journey (null = arena map). */
+  activeArena: string | null;
   introSeen: boolean;
   muted: boolean;
   progress: Record<JourneyId, JourneyProgress>;
@@ -49,9 +55,12 @@ export type GameAction =
   | { type: "SELECT_JOURNEY"; journey: JourneyId }
   | { type: "TOGGLE_MUTE" }
   | { type: "RESOLVE"; key: string }
+  | { type: "RECORD_ATTACK"; key: string; outcome: AttackOutcome }
+  | { type: "ENTER_ARENA"; arenaId: string }
+  | { type: "LEAVE_ARENA" }
   | { type: "LOSE_HEART"; key: string; entry?: Omit<JournalEntry, "key" | "at"> }
   | { type: "ADD_JOURNAL"; key: string; title: string; note: string }
-  | { type: "VIEW_SPOTLIGHT"; arenaId: string }
+  | { type: "VIEW_SPOTLIGHT"; arenaId: string; badge?: string }
   | { type: "EARN_BADGE"; badge: string }
   | { type: "ACK_COMEBACK" }
   | { type: "CHOOSE_FINALE"; choiceId: string }
@@ -63,6 +72,7 @@ export function freshProgress(): JourneyProgress {
     hearts: STARTING_HEARTS,
     heartLossKeys: [],
     resolvedKeys: [],
+    attackOutcomes: {},
     spotlightsViewed: [],
     badges: [],
     journal: [],
@@ -77,6 +87,7 @@ export function initialState(): GameState {
     version: STATE_VERSION,
     phase: "title",
     journey: null,
+    activeArena: null,
     introSeen: false,
     muted: true, // never autoplay audio
     progress: { father: freshProgress(), shivam: freshProgress() },
@@ -102,14 +113,28 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
     case "FINISH_INTRO":
       return { ...state, phase: "select", introSeen: true };
     case "GO_SELECT":
-      return { ...state, phase: "select" };
+      return { ...state, phase: "select", activeArena: null };
     case "SELECT_JOURNEY":
-      return { ...state, phase: "journey", journey: action.journey, introSeen: true };
+      return { ...state, phase: "journey", journey: action.journey, activeArena: null, introSeen: true };
+    case "ENTER_ARENA":
+      return state.journey ? { ...state, activeArena: action.arenaId } : state;
+    case "LEAVE_ARENA":
+      return { ...state, activeArena: null };
     case "TOGGLE_MUTE":
       return { ...state, muted: !state.muted };
     case "RESOLVE":
       return updateCurrent(state, (p) =>
         p.resolvedKeys.includes(action.key) ? p : { ...p, resolvedKeys: [...p.resolvedKeys, action.key] },
+      );
+    case "RECORD_ATTACK":
+      return updateCurrent(state, (p) =>
+        p.attackOutcomes[action.key] === action.outcome && p.resolvedKeys.includes(action.key)
+          ? p
+          : {
+              ...p,
+              resolvedKeys: addUnique(p.resolvedKeys, action.key),
+              attackOutcomes: { ...p.attackOutcomes, [action.key]: action.outcome },
+            },
       );
     case "LOSE_HEART":
       return updateCurrent(state, (p) => {
@@ -130,11 +155,16 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
         return journal === p.journal ? p : { ...p, journal };
       });
     case "VIEW_SPOTLIGHT":
-      return updateCurrent(state, (p) =>
-        p.spotlightsViewed.includes(action.arenaId)
-          ? p
-          : { ...p, spotlightsViewed: addUnique(p.spotlightsViewed, action.arenaId) },
-      );
+      return updateCurrent(state, (p) => {
+        const badge = action.badge;
+        const hasBadge = !badge || p.badges.includes(badge);
+        if (p.spotlightsViewed.includes(action.arenaId) && hasBadge) return p;
+        return {
+          ...p,
+          spotlightsViewed: addUnique(p.spotlightsViewed, action.arenaId),
+          badges: badge ? addUnique(p.badges, badge) : p.badges,
+        };
+      });
     case "EARN_BADGE":
       return updateCurrent(state, (p) => (p.badges.includes(action.badge) ? p : { ...p, badges: [...p.badges, action.badge] }));
     case "ACK_COMEBACK":
@@ -142,7 +172,11 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
     case "CHOOSE_FINALE":
       return updateCurrent(state, (p) => ({ ...p, finaleChoice: action.choiceId }));
     case "RESET_JOURNEY":
-      return { ...state, progress: { ...state.progress, [action.journey]: freshProgress() } };
+      return {
+        ...state,
+        activeArena: state.journey === action.journey ? null : state.activeArena,
+        progress: { ...state.progress, [action.journey]: freshProgress() },
+      };
     case "RESET_ALL":
       return { ...initialState(), muted: state.muted, introSeen: state.introSeen };
     default:
@@ -168,6 +202,7 @@ export function hydrateState(raw: unknown): GameState {
     version: STATE_VERSION,
     phase,
     journey,
+    activeArena: journey && typeof r.activeArena === "string" ? r.activeArena : null,
     introSeen: Boolean(r.introSeen),
     muted: r.muted !== false,
     progress: {
@@ -187,6 +222,7 @@ function hydrateProgress(raw: unknown): JourneyProgress {
     hearts,
     heartLossKeys: strings(p.heartLossKeys),
     resolvedKeys: strings(p.resolvedKeys),
+    attackOutcomes: hydrateOutcomes(p.attackOutcomes),
     spotlightsViewed: strings(p.spotlightsViewed),
     badges: strings(p.badges),
     journal: Array.isArray(p.journal)
@@ -199,4 +235,35 @@ function hydrateProgress(raw: unknown): JourneyProgress {
     comebackPending: Boolean(p.comebackPending),
     finaleChoice: typeof p.finaleChoice === "string" ? p.finaleChoice : null,
   };
+}
+
+const OUTCOMES: AttackOutcome[] = ["proven", "partial", "learning"];
+
+function hydrateOutcomes(raw: unknown): Record<string, AttackOutcome> {
+  if (!raw || typeof raw !== "object") return {};
+  const out: Record<string, AttackOutcome> = {};
+  for (const [k, v] of Object.entries(raw as Record<string, unknown>)) {
+    if (OUTCOMES.includes(v as AttackOutcome)) out[k] = v as AttackOutcome;
+  }
+  return out;
+}
+
+// ---- Papa's mood: Skeptical → Impressed, driven only by resolved attack outcomes ----
+export type PapaStage = "skeptical" | "curious" | "warming" | "impressed";
+export const PAPA_STAGES: PapaStage[] = ["skeptical", "curious", "warming", "impressed"];
+/** Proven/partial defenses impress Papa most; an honest "not on my CV" still earns respect. */
+const OUTCOME_POINTS: Record<AttackOutcome, number> = { proven: 2, partial: 2, learning: 1 };
+const STAGE_THRESHOLDS: Array<[PapaStage, number]> = [
+  ["impressed", 11],
+  ["warming", 6],
+  ["curious", 2],
+  ["skeptical", 0],
+];
+/** 5 proven + 1 partial + 3 learning in the engine = 15 points when all nine are resolved. */
+export const PAPA_MAX_POINTS = 15;
+
+export function papaImpression(outcomes: Record<string, AttackOutcome>): { points: number; stage: PapaStage } {
+  const points = Object.values(outcomes).reduce((sum, o) => sum + OUTCOME_POINTS[o], 0);
+  const stage = STAGE_THRESHOLDS.find(([, min]) => points >= min)?.[0] ?? "skeptical";
+  return { points, stage };
 }

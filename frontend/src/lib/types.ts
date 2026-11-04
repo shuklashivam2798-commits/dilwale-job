@@ -27,6 +27,24 @@ export interface Arena {
   badge: string;
   hero_problem: string;
   hero_moves: HeroMove[];
+  /** Vault ids backing core_proof. */
+  spotlight_powers: string[];
+}
+
+export interface ProofMetric {
+  label: string;
+  value: string;
+}
+
+/** "Show Me Proof" breakdown — lifted from the attack's answer/evidence/limitation. */
+export interface AttackProof {
+  contribution: string | null;
+  decisions: string[];
+  metrics: ProofMetric[];
+  related_powers: string[];
+  supports: string[];
+  not_claimed: string[];
+  transferable: string[];
 }
 
 export interface FatherAttack {
@@ -44,6 +62,7 @@ export interface FatherAttack {
   papa: string;
   source: string;
   supporting_material_suggestion: string;
+  proof: AttackProof;
 }
 
 export interface FinaleChoice {

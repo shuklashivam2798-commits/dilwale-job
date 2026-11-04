@@ -1,13 +1,14 @@
 import { motion } from "motion/react";
-import { ArrowLeft, Award, Lock, Repeat, RotateCcw, Sparkle } from "lucide-react";
+import { ArrowLeft, ArrowRight, Award, Lock, Repeat, RotateCcw, Sparkle } from "lucide-react";
 import { useGame } from "@/lib/game-store";
-import type { JourneyId, JourneyProgress } from "@/lib/gameEngine";
-import { JOURNEYS, OTHER_JOURNEY } from "@/lib/script";
+import { papaImpression, type AttackOutcome, type JourneyId, type JourneyProgress } from "@/lib/gameEngine";
+import { JOURNEYS, OTHER_JOURNEY, OUTCOME_COPY, PAPA_STAGE_COPY } from "@/lib/script";
 import type { Arena, FatherAttack, GameEngine } from "@/lib/types";
 import { useGameData } from "@/hooks/useGameData";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { HeartsMeter } from "@/components/game/HudBits";
+import { PapaMoodMeter } from "@/components/game/father/PapaMoodMeter";
 import { MissGrowthSprite, MonsterSilhouette, PapaSprite, ShivamSprite, type MonsterKind } from "@/components/game/Sprites";
 
 const ARENA_TINT: Record<string, string> = {
@@ -47,7 +48,11 @@ export function JourneyHub({ onRestart }: JourneyHubProps) {
       {/* header */}
       <section className="mt-4 grid gap-6 md:grid-cols-[auto_1fr] md:items-end">
         <div className="h-40 w-28 sm:h-48 sm:w-32">
-          {journey === "father" ? <PapaSprite className="h-full w-full" /> : <ShivamSprite className="h-full w-full" />}
+          {journey === "father" ? (
+            <PapaSprite mood={PAPA_STAGE_COPY[papaImpression(progress.attackOutcomes).stage].mood} className="h-full w-full" />
+          ) : (
+            <ShivamSprite className="h-full w-full" />
+          )}
         </div>
         <div>
           <p className={cn("font-mono text-xs font-semibold uppercase tracking-[0.3em]", journey === "father" ? "text-papa" : "text-hero")}>
@@ -65,10 +70,14 @@ export function JourneyHub({ onRestart }: JourneyHubProps) {
 
       <StatsRow journey={journey} progress={progress} engine={engine} />
 
+      {journey === "father" && <PapaMoodMeter outcomes={progress.attackOutcomes} className="mt-4 max-w-xl" />}
+
       <div className="mt-8 flex items-center gap-3 rounded-sm border border-gold/40 bg-gold/10 px-4 py-3" data-testid="journey-hub-chapter-note">
-        <Lock className="size-4 shrink-0 text-gold" />
+        {journey === "father" ? <Award className="size-4 shrink-0 text-gold" /> : <Lock className="size-4 shrink-0 text-gold" />}
         <p className="text-sm text-gold-soft">
-          The arena gates open in the next chapter. Your path, hearts and Learning Journal are saved on this device.
+          {journey === "father"
+            ? "Pick any arena. Resolve at least one question attack, then open its Proof Spotlight to earn the seal. Progress is saved on this device."
+            : "The arena gates open in the next chapter. Your path, hearts and Learning Journal are saved on this device."}
         </p>
       </div>
 
@@ -87,6 +96,15 @@ export function JourneyHub({ onRestart }: JourneyHubProps) {
                     journey={journey}
                     attacks={engine.father_attacks.filter((a) => a.arena === arena.id)}
                     earned={progress.badges.includes(arena.badge)}
+                    outcomes={progress.attackOutcomes}
+                    onEnter={
+                      journey === "father"
+                        ? () => {
+                            sfx("confirm");
+                            dispatch({ type: "ENTER_ARENA", arenaId: arena.id });
+                          }
+                        : undefined
+                    }
                   />
                 ))
               : (
@@ -111,8 +129,10 @@ export function JourneyHub({ onRestart }: JourneyHubProps) {
         <div>
           <p className="font-mono text-[11px] font-semibold uppercase tracking-widest text-gold">Grand Finale</p>
           <h3 className="mt-1 font-heading text-2xl font-black uppercase tracking-tight text-white">Miss Growth's surprise challenge</h3>
-          <p className="mt-2 text-sm text-violet-200">
-            Unlocks after all three proof spotlights. Papa may test the past — but the final decision is hers.
+          <p className="mt-2 text-sm text-violet-200" data-testid="finale-teaser-text">
+            {progress.spotlightsViewed.length >= 3
+              ? "All three proof seals earned! Miss Growth's surprise challenge opens in the next chapter."
+              : "Unlocks after all three proof spotlights. Papa may test the past — but the final decision is hers."}
           </p>
         </div>
         <div className="flex items-center gap-2 font-mono text-sm font-semibold text-gold-soft" data-testid="finale-teaser-seals">
@@ -173,9 +193,13 @@ interface ArenaCardProps {
   journey: JourneyId;
   attacks: FatherAttack[];
   earned: boolean;
+  outcomes: Record<string, AttackOutcome>;
+  /** Present when the arena is playable on this journey. */
+  onEnter?: () => void;
 }
 
-function ArenaCard({ arena, index, journey, attacks, earned }: ArenaCardProps) {
+function ArenaCard({ arena, index, journey, attacks, earned, outcomes, onEnter }: ArenaCardProps) {
+  const answered = attacks.filter((a) => outcomes[a.id]).length;
   const tint = ARENA_TINT[arena.id] ?? "text-violet-400";
   return (
     <motion.article
@@ -190,9 +214,15 @@ function ArenaCard({ arena, index, journey, attacks, earned }: ArenaCardProps) {
     >
       <div className="flex items-center justify-between">
         <span className="font-mono text-[11px] font-semibold uppercase tracking-widest text-violet-300">Arena 0{arena.number}</span>
-        <span className="inline-flex items-center gap-1 rounded-sm bg-night px-2 py-1 font-mono text-[10px] font-semibold uppercase tracking-widest text-gold" data-testid={`arena-card-${arena.id}-lock`}>
-          <Lock className="size-3" /> Next chapter
-        </span>
+        {onEnter ? (
+          <span className="rounded-sm bg-night px-2 py-1 font-mono text-[10px] font-semibold uppercase tracking-widest text-gold" data-testid={`arena-card-${arena.id}-status`}>
+            {earned ? "Cleared" : answered ? `${answered}/${attacks.length} answered` : "Open"}
+          </span>
+        ) : (
+          <span className="inline-flex items-center gap-1 rounded-sm bg-night px-2 py-1 font-mono text-[10px] font-semibold uppercase tracking-widest text-gold" data-testid={`arena-card-${arena.id}-lock`}>
+            <Lock className="size-3" /> Next chapter
+          </span>
+        )}
       </div>
 
       <div className="mt-4 flex items-center gap-4">
@@ -210,7 +240,13 @@ function ArenaCard({ arena, index, journey, attacks, earned }: ArenaCardProps) {
             <li key={a.id} className="flex items-center gap-2 rounded-sm bg-night/60 px-2.5 py-2 text-sm text-white/85" data-testid={`arena-attack-${a.id}`}>
               <span className="font-mono text-[10px] font-semibold text-papa">{a.id}</span>
               <span className="flex-1 leading-snug">{a.name}</span>
-              <span className="font-mono text-[9px] uppercase tracking-wider text-violet-400">{a.difficulty}</span>
+              {outcomes[a.id] ? (
+                <span className={cn("rounded-sm border px-1.5 font-mono text-[9px] font-semibold uppercase tracking-wider", OUTCOME_COPY[outcomes[a.id]].tone)}>
+                  {OUTCOME_COPY[outcomes[a.id]].label}
+                </span>
+              ) : (
+                <span className="font-mono text-[9px] uppercase tracking-wider text-violet-400">{a.difficulty}</span>
+              )}
             </li>
           ))}
         </ul>
@@ -228,6 +264,15 @@ function ArenaCard({ arena, index, journey, attacks, earned }: ArenaCardProps) {
           {arena.badge} · {earned ? "Earned" : "Locked"}
         </span>
       </div>
+      {onEnter && (
+        <Button
+          onClick={onEnter}
+          className="mt-4 h-11 w-full rounded-sm bg-papa font-heading font-bold uppercase text-white shadow-[4px_4px_0_#4C0519] hover:bg-rose-400"
+          data-testid={`arena-enter-${arena.id}`}
+        >
+          {earned ? "Revisit Arena" : "Enter Arena"} <ArrowRight className="size-4" />
+        </Button>
+      )}
     </motion.article>
   );
 }
