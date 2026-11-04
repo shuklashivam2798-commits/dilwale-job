@@ -149,11 +149,9 @@ export function JourneySelect() {
             <MissGrowthSprite className="h-full w-full" />
           </div>
           <div className="lg:text-center">
-            <p className="font-mono text-[10px] font-semibold uppercase tracking-widest text-gold">The prize</p>
-            <p className="font-heading text-lg font-black uppercase text-white">Miss Growth</p>
-            <p className="mt-1 text-xs leading-relaxed text-violet-200">
-              She is watching. A surprise challenge waits at the end of either path.
-            </p>
+            <p className="font-mono text-[10px] font-semibold uppercase tracking-widest text-gold">The Final Boss</p>
+            <p className="font-heading text-lg font-black uppercase text-white">MISS GROWTH</p>
+            <p className="mt-1 text-xs leading-relaxed text-violet-200">Win Papa's trust. But can you win hers?</p>
           </div>
         </motion.aside>
 
