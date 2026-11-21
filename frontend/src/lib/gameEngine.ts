@@ -184,7 +184,7 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
         progress: { ...state.progress, [action.journey]: freshProgress() },
       };
     case "RESET_ALL":
-      return { ...initialState(), muted: state.muted, introSeen: state.introSeen };
+      return { ...initialState(), muted: state.muted };
     default:
       return state;
   }

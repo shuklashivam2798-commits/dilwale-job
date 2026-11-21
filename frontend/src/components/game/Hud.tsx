@@ -114,7 +114,7 @@ export function Hud({ onOpenVault, onOpenJournal, onRestart }: HudProps): ReactE
                 </DropdownMenuItem>
               )}
               <DropdownMenuItem variant="destructive" onClick={() => onRestart("all")} data-testid="hud-menu-restart-all">
-                Restart whole game
+                Reset entire game
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

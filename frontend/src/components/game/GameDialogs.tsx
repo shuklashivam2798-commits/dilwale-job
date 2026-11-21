@@ -21,11 +21,11 @@ export function RestartDialog({ scope, onClose }: { scope: RestartScope | null; 
       <DialogContent className="rounded-sm border-2 border-gold/60 bg-panel" data-testid="restart-dialog">
         <DialogHeader>
           <DialogTitle className="font-heading text-xl font-black uppercase text-white">
-            {scope === "all" ? "Restart the whole game?" : `Restart ${journeyTitle}?`}
+            {scope === "all" ? "Reset the entire game?" : `Restart ${journeyTitle}?`}
           </DialogTitle>
           <DialogDescription className="text-violet-200">
             {scope === "all"
-              ? "Both journeys go back to 3 hearts with empty journals. Sound settings are kept."
+              ? "Everything starts fresh, like a first visit: both journeys, hearts, seals, journals and the opening scene. Your sound setting is kept."
               : "This journey goes back to 3 hearts, no seals and an empty journal. The other journey is untouched."}
           </DialogDescription>
         </DialogHeader>
@@ -34,7 +34,7 @@ export function RestartDialog({ scope, onClose }: { scope: RestartScope | null; 
             Keep playing
           </Button>
           <Button variant="destructive" onClick={confirm} className="rounded-sm" data-testid="restart-confirm-button">
-            Yes, restart
+            {scope === "all" ? "Yes, reset everything" : "Yes, restart"}
           </Button>
         </DialogFooter>
       </DialogContent>

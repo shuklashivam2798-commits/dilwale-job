@@ -59,3 +59,8 @@ Behind the Build voice slots (hero_moves, setbacks, retry, seals), Miss Growth f
 
 ## Auth
 None. No accounts.
+
+## Reset game (built)
+- Progress is intentionally saved in localStorage so players can continue later.
+- Title screen shows a "Reset Game" button (`title-reset-game-button`) whenever there is saved progress; the HUD ☰ menu has "Reset entire game" (`hud-menu-restart-all`). Both open the shared `RestartDialog` (scope "all") with a confirm step.
+- `RESET_ALL` returns a first-visit state (both journeys, hearts, seals, journals, introSeen) and keeps only the sound (mute) setting.

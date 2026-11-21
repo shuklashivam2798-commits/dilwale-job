@@ -1,9 +1,10 @@
-import type { ReactElement } from "react";
+import { useState, type ReactElement } from "react";
 import { motion, type TargetAndTransition, type Transition } from "motion/react";
-import { Play, FastForward, ArrowRight } from "lucide-react";
+import { Play, FastForward, ArrowRight, RotateCcw } from "lucide-react";
 import { useGame } from "@/hooks/useGame";
 import { JOURNEYS } from "@/lib/script";
 import { Button } from "@/components/ui/button";
+import { RestartDialog } from "@/components/game/GameDialogs";
 import { MuteToggle } from "@/components/game/HudBits";
 import { MissGrowthSprite, PapaSprite, ShivamSprite } from "@/components/game/Sprites";
 import { Sparkles } from "@/components/game/StageFx";
@@ -90,6 +91,8 @@ function TitleMarquee(): ReactElement {
 function TitleActions(): ReactElement {
   const { state, dispatch, sfx } = useGame();
   const savedJourney = state.journey;
+  const hasSave = state.introSeen || savedJourney !== null;
+  const [resetOpen, setResetOpen] = useState(false);
   return (
     <div className="mt-8 flex flex-wrap items-center gap-3">
       <Button
@@ -132,6 +135,21 @@ function TitleActions(): ReactElement {
           Continue {JOURNEYS[savedJourney].title} <ArrowRight className="size-4" />
         </Button>
       )}
+      {hasSave && (
+        <Button
+          variant="ghost"
+          size="lg"
+          onClick={() => {
+            sfx("select");
+            setResetOpen(true);
+          }}
+          className="h-12 rounded-sm px-4 font-heading font-bold uppercase tracking-wide text-rose-300 hover:bg-rose-950/50 hover:text-rose-200"
+          data-testid="title-reset-game-button"
+        >
+          <RotateCcw className="size-4" /> Reset Game
+        </Button>
+      )}
+      <RestartDialog scope={resetOpen ? "all" : null} onClose={() => setResetOpen(false)} />
     </div>
   );
 }
