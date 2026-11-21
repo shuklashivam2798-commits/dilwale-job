@@ -182,8 +182,9 @@ function MonsterStage({ arena, monsterState, casting, hp, lastMove }: MonsterSta
         <ShivamSprite className="h-full w-full" data-testid="monster-shivam-sprite" />
       </div>
 
-      <div className="absolute bottom-8 right-[8%] w-[34%] max-w-[240px]">
-        <div className="mb-2" data-testid="monster-hp">
+      {/* Height-bounded column: the monster scales down to the stage height (never clipped at any zoom/viewport). */}
+      <div className="absolute bottom-8 right-[8%] top-4 flex w-[34%] max-w-[240px] flex-col">
+        <div className="mb-2 shrink-0" data-testid="monster-hp">
           <div className="flex justify-between font-mono text-[10px] font-semibold uppercase tracking-widest text-white">
             <span>{arena.monster}</span>
             <span>{hp} HP</span>
@@ -192,8 +193,8 @@ function MonsterStage({ arena, monsterState, casting, hp, lastMove }: MonsterSta
             <div className="h-full bg-papa transition-[width] duration-700" style={{ width: `${hp}%` }} />
           </div>
         </div>
-        <motion.div animate={MONSTER_MOTION[monsterState]} transition={MONSTER_TRANSITION}>
-          <MonsterSilhouette kind={arena.id as MonsterKind} className={cn("aspect-square w-full animate-float-slow", TINT[arena.id])} />
+        <motion.div animate={MONSTER_MOTION[monsterState]} transition={MONSTER_TRANSITION} className="flex min-h-0 flex-1 items-end justify-center">
+          <MonsterSilhouette kind={arena.id as MonsterKind} className={cn("aspect-square h-auto max-h-full w-full animate-float-slow", TINT[arena.id])} />
         </motion.div>
       </div>
 

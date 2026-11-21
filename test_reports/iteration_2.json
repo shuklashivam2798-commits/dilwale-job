@@ -1,0 +1,78 @@
+{
+  "passed": 8,
+  "failed": 0,
+  "bugs": [],
+  "action_items": [
+    {
+      "type": "test_script_note",
+      "severity": "low",
+      "detail": "Clicking hud-menu-button then the 'switch journey' dropdown item intercepted subsequent pointer events via a lingering base-ui portal overlay in automated runs, causing click timeouts. Worked around by switching journey via localStorage state + reload (same effect, no UI dependency) in no-horizontal-scroll-core-screens and regression-core-gameplay-after-layout-fix. This may also affect real users double-clicking the menu quickly; worth a quick manual check of the HUD dropdown's overlay dismissal, though it did not block any acceptance criterion."
+    }
+  ],
+  "retest_needed": false,
+  "checks": [
+    {
+      "criterion": "No horizontal scrolling on title/cinematic/journey-select/journey-hub/father-arena/question-attack overlay/battle-result/shivam-monster-battle screens across 320x640 up to 2560x1440",
+      "name": "no-horizontal-scroll-core-screens",
+      "lane": "browser",
+      "status": "passed",
+      "evidence": "Walked title -> cinematic -> journey select -> father hub -> father arena -> battle overlay -> battle result -> shivam monster battle, checking document.scrollWidth<=clientWidth (tolerance 2px) at 320x640, 390x844, 640x360, 768x1024, 1280x720, 1366x768, 1920x1080, 2560x1440 for each screen. No overflow detected anywhere."
+    },
+    {
+      "criterion": "Shivam monster battle stage (monster-stage) at short/zoomed viewports keeps HP bar and monster silhouette fully inside the stage",
+      "name": "monster-stage-elements-not-clipped",
+      "lane": "browser",
+      "status": "passed",
+      "evidence": "At 1280x720, 1366x768 and 640x360, monster-hp bounding box and the monster SVG bounding box stayed within monster-stage bounding box (y within [stage.y, stage.y+stage.height] +-2px tolerance). Screenshot at 1280x720 shows HP bar and monster fully visible, not clipped."
+    },
+    {
+      "criterion": "Opening cinematic keeps visible height at short viewports; dialogue/Next/Skip reachable",
+      "name": "cinematic-stage-min-height-short-viewport",
+      "lane": "browser",
+      "status": "passed",
+      "evidence": "cinematic-stage boundingBox height was >=200px at both 640x360 and 1280x600; cinematic-next-button and cinematic-skip-button were scrollable into view and clickable, advancing the beat / landing on journey select respectively."
+    },
+    {
+      "criterion": "Top HUD bar buttons fit within viewport and are clickable at 320/360/390/768/1024/1440 widths; wordmark doesn't overlap",
+      "name": "hud-fits-small-viewports",
+      "lane": "browser",
+      "status": "passed",
+      "evidence": "At each width, hud-resume-vault-button, hud-learning-journal-button, hud-audio-toggle, hud-menu-button were visible, within [0,width] horizontally and within the game-hud vertical bounds, and the wordmark's right edge stayed left of the vault button's left edge. No doc overflow at any width. Screenshot at 320px confirms compact icon-only layout without clipping."
+    },
+    {
+      "criterion": "Father question-attack overlay sprites fully inside stage at 640x360/390x844; dialogue + skip/continue reachable",
+      "name": "father-overlay-fits-short-viewports",
+      "lane": "browser",
+      "status": "passed",
+      "evidence": "battle-papa-sprite and battle-shivam-sprite bounding boxes stayed inside battle-stage bounds at both sizes; battle-skip-button and battle-continue-button were reachable via scroll and clicked successfully, advancing through to battle-result at each viewport with no doc overflow."
+    },
+    {
+      "criterion": "Finale stage sprites inside stage + spotlight popup scrollable/closable at 390x844 and 640x360",
+      "name": "finale-and-spotlight-fit-short-viewports",
+      "lane": "browser",
+      "status": "passed",
+      "evidence": "finale-stage sprites' bounding boxes stayed within stage bounds at both sizes (screenshot shows Papa/Miss Growth/Shivam sprites visible, no scroll). spotlight-dialog opened and spotlight-close-button was reachable and clickable at both 390x844 and 640x360."
+    },
+    {
+      "criterion": "Regression: Shivam growth arena win -> spotlight debrief; Father G1 attack -> skip -> continue; state persisted under dilwale-job-le-jayenge:v1; no console errors",
+      "name": "regression-core-gameplay-after-layout-fix",
+      "lane": "browser",
+      "status": "passed",
+      "evidence": "move-play-grow_measure won immediately, arena-open-spotlight-button opened spotlight-dialog (Victory Debrief); G1 attack -> battle-skip-button -> battle-result -> battle-continue-button set attack-card-G1 data-outcome=proven; localStorage key dilwale-job-le-jayenge:v1 contained progress.father.resolvedKeys=['G1'] and progress.shivam.spotlightsViewed containing 'growth'; zero non-benign console errors captured."
+    },
+    {
+      "criterion": "Cross-check on public preview ingress URL (no horizontal scroll on title screen)",
+      "name": "preview-url-no-horizontal-scroll-title",
+      "lane": "browser",
+      "status": "passed",
+      "evidence": "Against https://dilwale-job--31ndye6w.preview.emergentagent.com, title-start-button rendered with zero scrollWidth-clientWidth overflow at 320x640, 640x360, 1280x720 and 1920x1080."
+    },
+    {
+      "criterion": "Backend game engine data integrity (regression, unaffected by layout fixes)",
+      "name": "test_tscheck_game_engine_data.py",
+      "lane": "backend",
+      "status": "passed",
+      "evidence": "Re-ran existing suite: GET http://localhost:8001/api/game -> 200; 3 pytest cases passed (0.65s) validating father_attacks/arenas/powers structure, unchanged by the CSS/layout fixes under test."
+    }
+  ]
+}

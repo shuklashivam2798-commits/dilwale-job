@@ -13,7 +13,7 @@ import {
 import { HeartsMeter, MuteToggle } from "@/components/game/HudBits";
 
 const hudButton =
-  "pixel-frame-sm inline-flex h-9 items-center gap-1.5 rounded-sm bg-panel px-2.5 font-mono text-[11px] font-semibold uppercase tracking-widest text-violet-100 transition-[background-color,color,transform] duration-200 hover:bg-violet-900/60 hover:text-white active:translate-y-px";
+  "pixel-frame-sm inline-flex h-9 items-center gap-1.5 rounded-sm bg-panel px-2 font-mono sm:px-2.5 text-[11px] font-semibold uppercase tracking-widest text-violet-100 transition-[background-color,color,transform] duration-200 hover:bg-violet-900/60 hover:text-white active:translate-y-px";
 
 interface HudProps {
   onOpenVault: () => void;
@@ -28,22 +28,22 @@ export function Hud({ onOpenVault, onOpenJournal, onRestart }: HudProps): ReactE
 
   return (
     <header className="sticky top-0 z-40 border-b border-violet-500/30 bg-night/80 backdrop-blur-md" data-testid="game-hud">
-      <div className="mx-auto flex max-w-7xl items-center gap-3 px-4 py-2.5 sm:px-8">
+      <div className="mx-auto flex max-w-7xl items-center gap-2 px-3 py-2.5 sm:gap-3 sm:px-8">
         <button
           type="button"
           onClick={() => {
             sfx("select");
             dispatch({ type: "GO_TITLE" });
           }}
-          className="font-heading text-sm font-black uppercase leading-none tracking-tight text-white transition-colors duration-150 hover:text-gold"
+          className="shrink-0 font-heading text-sm font-black uppercase leading-none tracking-tight text-white transition-colors duration-150 hover:text-gold sm:whitespace-nowrap"
           data-testid="hud-title-button"
           aria-label="Back to title screen"
         >
           Dilwale <span className="text-gold">Job</span>
-          <span className="hidden sm:inline"> Le Jayenge</span>
+          <span className="hidden lg:inline"> Le Jayenge</span>
         </button>
 
-        <div className="flex flex-1 items-center justify-center gap-3">
+        <div className="flex min-w-0 flex-1 items-center justify-center gap-3">
           {state.journey && progress ? (
             <>
               <span className="hidden font-mono text-[10px] font-semibold uppercase tracking-widest text-violet-300 md:inline" data-testid="hud-journey-label">
@@ -58,7 +58,7 @@ export function Hud({ onOpenVault, onOpenJournal, onRestart }: HudProps): ReactE
           )}
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
           <button
             type="button"
             className={hudButton}
@@ -71,7 +71,7 @@ export function Hud({ onOpenVault, onOpenJournal, onRestart }: HudProps): ReactE
           >
             <Gem className="size-4 text-gold" />
             <span className="hidden sm:inline">Vault</span>
-            {vaultCount > 0 && <span className="text-gold">{vaultCount}</span>}
+            {vaultCount > 0 && <span className="hidden text-gold sm:inline">{vaultCount}</span>}
           </button>
           <button
             type="button"
@@ -87,7 +87,7 @@ export function Hud({ onOpenVault, onOpenJournal, onRestart }: HudProps): ReactE
             <span className="hidden sm:inline">Journal</span>
             <span className="text-magenta" data-testid="hud-journal-count">{progress?.journal.length ?? 0}</span>
           </button>
-          <MuteToggle />
+          <MuteToggle className="px-2 sm:px-2.5" />
           <DropdownMenu>
             <DropdownMenuTrigger className={hudButton} data-testid="hud-menu-button" aria-label="Game menu">
               <Menu className="size-4" />

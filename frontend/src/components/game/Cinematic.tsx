@@ -99,7 +99,7 @@ function CinematicStage({ current, run, freeze, reduceMotion, onEnter }: Cinemat
   return (
     <div
       className={cn(
-        "relative mx-4 mt-4 flex-1 overflow-hidden rounded-sm border-2 border-violet-700/60 transition-[filter] duration-700 sm:mx-8",
+        "relative mx-4 mt-4 min-h-[200px] flex-1 overflow-hidden rounded-sm border-2 border-violet-700/60 transition-[filter] duration-700 sm:mx-8 sm:min-h-[240px]",
         freeze && "grayscale-[0.55] sepia-[0.35]",
       )}
       data-testid="cinematic-stage"

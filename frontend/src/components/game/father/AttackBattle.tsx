@@ -142,7 +142,7 @@ function BattleStage({ attack, arena, step, hit, reduceMotion, children }: Battl
     <div
       className={cn(
         "relative mt-4 overflow-hidden rounded-sm border-2 border-violet-700/60 transition-[height] duration-500",
-        isResult ? "h-[220px] sm:h-[250px]" : "h-[clamp(280px,46vh,430px)]",
+        isResult ? "h-[220px] sm:h-[250px]" : "h-[clamp(200px,46vh,430px)]",
       )}
       data-testid="battle-stage"
     >
